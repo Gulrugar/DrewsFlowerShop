@@ -52,6 +52,7 @@
         "footer-6": {
           "type": "contact",
           "settings": {
+            "image": "shopify:\/\/shop_images\/newsweek-horizontal.jpg",
             "image_width": 225
           }
         }
