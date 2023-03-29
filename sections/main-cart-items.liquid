@@ -1,0 +1,500 @@
+
+<script src="{{ 'component-modal.js' | asset_url }}" defer="defer"></script>
+
+{{ 'main-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal.css' | asset_url | stylesheet_tag }}
+
+
+<div class="cart page-width">
+  <h1 class="alternate">Your Shopping Cart</h1>
+  <div id="cart-container" class="container" data-id="{{ section.id }}">
+    {%- if cart != empty -%}
+      <div class="cart-with-items">
+        <div class="row">
+          <div id="cart-item-list" class="cart-items col-lg-9">
+            <div class="row header">
+              <div class="col-4">Product(s) Currently in Your Cart</div>
+              <div class="col-2">Delivery Info</div>
+              <div class="col-3">Card</div>
+              <div class="col-3">Price</div>
+            </div>
+              {%- for item in cart.items -%}
+                <div class="row cart-item" id="CartItem-{{ forloop.index }}">
+                  <input type="hidden" id="[Balloon][Quantity]-{{ forloop.index }}" value="{{ item.properties['Balloon']['Quantity'] }}">
+                  <input type="hidden" id="[Balloon][Option]-{{ forloop.index }}" value="{{ item.properties['Balloon']['Option'] }}">
+                  <input type="hidden" id="[Chocolate]-{{ forloop.index }}" value="{{ item.properties['Chocolate'] }}">
+                  <input type="hidden" id="[Teddy Bear]-{{ forloop.index }}" value="{{ item.properties['Teddy Bear'] }}">
+                  <input type="hidden" id="[Zip]-{{ forloop.index }}" value="{{ item.properties['Zip'] }}">
+                  <input type="hidden" id="[Delivery Date]-{{ forloop.index }}" value="{{ item.properties['Delivery Date'] }}">
+                  <input type="hidden" id="[Card Type]-{{ forloop.index }}" value="{{ item.properties['Card Type'] }}">
+                  <input type="hidden" id="[Your Card Message]-{{ forloop.index }}" value="{{ item.properties['Your Card Message'] }}">
+                  <input type="hidden" id="[Your Signature]-{{ forloop.index }}" value="{{ item.properties['Your Signature'] }}">
+                  
+                  <div class="col-lg-4 product-info">
+                    <div class="row">
+                      <div class="image-col col-3 col-lg-5">
+                        <div class="product-listing-image">
+                          <!--1-->
+                            <img
+                              class="item"
+                              src="{{ item.image | image_url: width: 414 }}"
+                              sizes="(min-width: {{ settings.page_width }}px) 141px, (min-width: 990px) calc((100vw * 0.75 * 0.3333333 * 0.4166667) - 15px), calc((100vw * 0.25) - 15px)"
+                              alt="{{ item.alt }}"
+                              srcset="
+                              {{ item.image | image_url: width: 76 }} 76w,
+                              {{ item.image | image_url: width: 120 }} 120w,
+                              {{ item.image | image_url: width: 158 }} 158w,
+                              {{ item.image | image_url: width: 177 }} 177w,
+                              {{ item.image | image_url: width: 207 }} 207w,
+                              {{ item.image | image_url: width: 295 }} 295w,
+                              {{ item.image | image_url: width: 414 }} 414w"
+                            >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="row">
+                          <div class="detail-group col-12">
+                            <strong class="label" id="ProductName-{{ forloop.index}}">
+                              {{ item.title | split: '-' | first}}
+                              {%- if item.quantity > 1 -%}
+                                <span>&nbsp;x{{ item.quantity }}</span>
+                              {%- endif -%}
+                            </strong>
+                          </div>
+                          <div class="manage-link col-12">
+                            <button class="as-arrows-link" type="button">
+                              <a href="{{ item.url_to_remove }}">Remove Item</a>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 delivery-info">
+                    <div class="row date-details">
+                      <div class="detail-group col-7 col-lg-12">
+                        <strong class="label">Delivery To: &nbsp;</strong>
+                        <span class="info">{{ item.properties['Zip'] }}</span>
+                      </div>
+                      <div class="manage-link col-5 col-lg-12">
+                        <button class="as-arrows-link delivery-date-button" type="button" data-line="{{ forloop.index }}">
+                          Change Date
+                        </button>
+                      </div>
+                      <div class="detail-group col-12 delivery-date" >
+                        <strong class="label">
+                          Delivery Date:&nbsp;
+                        </strong>
+                        <span class="info">{{ item.properties['Delivery Date'] }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 card-info">
+                    <div class="row card-details">
+                      <div class="card-message detail-group col-8 col-lg-12">
+                        <!---->
+                        <strong class="label">Card - {{ item.properties['Card Type'] }}:</strong>
+                        <span class="info">{{ item.properties['Your Card Message'] }}</span>
+                      </div>
+                      <div class="manage-link col-4 col-lg-12">
+                        <button class="as-arrows-link edit-card-button" type="button" data-line="{{ forloop.index }}">
+                          Edit Card
+                        </button>
+                      </div>
+                      <div class="card-signature detail-group col-8 col-lg-12">
+                        <strong class="label">Signed:</strong>
+                        <span class="info">{{ item.properties['Your Signature'] }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 price-info">
+                    <div class="row product-price">
+                      <div class="col name">
+                        {{ item.title | split: '-' | first}}
+                        {%- if item.quantity > 1 -%}
+                          <span>&nbsp;x{{ item.quantity }}</span>
+                        {%- endif -%}
+                      </div>
+                      <div class="col price">
+                        <s>{{ item.variant.compare_at_price | money}}</s>
+                        {{ item.variant.price | money}}
+                      </div>
+                    </div>
+                    <div class="row product-upgrade-price">
+                      {%- if item.properties['Balloon']['Option'] != blank and item.properties['Balloon']['Quantity'] != blank -%}
+                        <div class="col name">{{ item.properties['Balloon']['Quantity'] }}&nbsp;{{ item.properties['Balloon']['Option'] }} Balloon</div>
+                        <div class="col price">
+                          {{ 500 | times: item.properties['Balloon']['Quantity'] | money }}
+                        </div>
+                      {%- endif -%}
+                    </div>
+  
+                    <div class="row product-upgrade-price">
+                      {%- if item.properties['Chocolate'] != blank -%}
+                        <div class="col name">Box of Chocolates</div>
+                        <div class="col price">
+                          {%- liquid
+                            case item.properties['Chocolate']
+                              when 's'
+                                assign chocPrice = 1000
+                              when 'm'
+                                assign chocPrice = 1500
+                              when 'l'
+                                assign chocPrice = 2000
+                            endcase
+  
+                            echo chocPrice | money
+                          -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    <div class="row product-upgrade-price">
+                      {%- if item.properties['Teddy Bear'] != blank-%}
+                        <div class="col name">Stuffed Teddy Bear</div>
+                        <div class="col price">
+                          {%- liquid
+                            case item.properties['Teddy Bear']
+                              when 's'
+                                assign bearPrice = 1500
+                              when 'm'
+                                assign bearPrice = 2000
+                              when 'l'
+                                assign bearPrice = 2500
+                            endcase
+  
+                            echo bearPrice | money
+                          -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+          </div>
+          <div class="order-summary col-lg-3">
+            <div class="order-summary-details">
+              <p class="order-summary-header">Order Summary</p>
+              <div class="line-items">
+                {%- for item in cart.items -%}
+                  <div class="cart-item">
+                    <div class="line-item item-summary">
+                      <div class="label">
+                        <span class="name">
+                          {{ item.title | split: '-' | first}}
+                          {%- if item.quantity > 1 -%}
+                            <span>&nbsp;x{{ item.quantity }}</span>
+                          {%- endif -%}
+                        </span>
+                      </div>
+                      <div class="cost">
+                        <s>{{ item.variant.compare_at_price | money}}</s>
+                        {{ item.variant.price | money}}
+                      </div>
+                    </div>
+                    <div class="line-item item-upgrades-summary">
+                      {%- if item.properties['Balloon']['Option'] != blank and item.properties['Balloon']['Quantity'] != blank -%}
+                        <div class="label">{{ item.properties['Balloon']['Quantity'] }}&nbsp;{{ item.properties['Balloon']['Option'] }} Balloon</div>
+                        <div class="cost">{{ 500 | times: item.properties['Balloon']['Quantity'] | money }}</div>
+                      {%- endif -%}
+                    </div>
+                    <div class="line-item item-upgrades-summary">
+                      {%- if item.properties['Chocolate'] != blank -%}
+                        <div class="label">Box of Chocolates</div>
+                        <div class="cost">
+                          {%- liquid
+                            case item.properties['Chocolate']
+                              when 's'
+                                assign chocPrice = 1000
+                              when 'm'
+                                assign chocPrice = 1500
+                              when 'l'
+                                assign chocPrice = 2000
+                            endcase
+
+                            echo chocPrice | money
+                          -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    <div class="line-item item-upgrades-summary">
+                      {%- if item.properties['Teddy Bear'] != blank -%}
+                        <div class="label">Stuffed Teddy Bear</div>
+                        <div class="cost">
+                          {%- liquid
+                            case item.properties['Teddy Bear']
+                              when 's'
+                                assign bearPrice = 1500
+                              when 'm'
+                                assign bearPrice = 2000
+                              when 'l'
+                                assign bearPrice = 2500
+                            endcase
+
+                            echo bearPrice | money
+                          -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+              <form class="discount-form" id="discount-form">
+                <label for="discount-code">If you have a discount code, please enter it here (optional):</label>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="discount-code"
+                    form="discount-form"
+                    name="discount_code"
+                    size="7"
+                    value="FREEADONS"
+                    readonly="readonly"
+                  >
+                  <button
+                    class="btn btn-secondary"
+                    type="submit"
+                    form="discount-form"
+                    disabled
+                  >
+                    Apply Discount
+                  </button>
+                </div>
+              </form>
+              <div class="subtotals line-items">
+                <div class="subtotal line-item savings">
+                  <div class="label">You Saved:</div>
+                  <div class="cost">
+                    {%- liquid
+                      assign totalSavings = 0
+                      for item in cart.items
+                        assign totalSavings = totalSavings | plus: item.variant.compare_at_price | minus: item.variant.price 
+                      endfor
+                      echo totalSavings | money
+                    -%}
+                  </div>
+                </div>
+                <div class="subtotal line-item">
+                  <div class="label">Subtotal:</div>
+                  <div class="cost">{{ cart.total_price | money}}</div>
+                </div>
+              </div>
+              <form action="{{ routes.cart_url }}" method="post" id="cart">
+                <div class="proceed-to-checkout">
+                  <!--1-->
+                  <!--2-->
+                  <div class="payment-buttons">
+                    <button
+                      class="btn btn-primary"
+                      type="submit"
+                      name="checkout"
+                      form="cart"
+                    >
+                      Continue to Secure Checkout
+                    </button>
+                    {%- if additional_checkout_buttons -%}
+                      <div class="third-party-options">
+                        <!--1-->
+                        <div class="third-party-buttons">
+                          {{ content_for_additional_checkout_buttons }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <!--4-->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="cart-no-items">
+        <p>There are no items in your shopping cart.</p>
+        <p>
+          Please proceed to the
+          <a href="/">From You Flowers home page</a>
+          to shop.
+        </p>
+      </div>
+    {%- endif -%}
+  </div>
+  <cart-delivery-modal id="vjs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vjs-modal-title" aria-modal="true" style="padding-right: 17px;">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="vjs-modal-title" class="modal-title">Choose a Delivery Date</h3>
+          <button class="close" type="button" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+          <!--2-->
+        </div>
+        <div class="modal-body">
+          <core-availability>
+            <div id="core-availability">
+              <div class="delivery-options container-fluid">
+                <div class="row">
+                  <!--1-->
+                  <div class="col-12 zip-code">
+                    <p>
+                      Recipient's Zip Code:
+                      <input class="form-control" id="modal-zip-code" readonly="readonly"
+                      value="">
+                    </p>
+                  </div>
+                  <div class="col-12 change-zip-code">
+                    <p>
+                      Wrong zip code?
+                      <button class="as-link" type="button" style="color: rgb(99, 93, 168);">
+                        Click here to type a new one.
+                      </button>
+                    </p>
+                  </div>
+                  <div class="col-12 first-option-cta">
+                    <p>We only offer free shipping including same day... sorry for the convenience</p>
+                    <p>
+                      <button
+                        class="as-arrows-link"
+                        value="2023-03-13"
+                        data-label="Monday, March 13"
+                        type="button"
+                        style="color: rgb(99, 93, 168);"
+                      >
+                        Available as Early as: Monday, March 13
+                      </button>
+                    </p>
+                  </div>
+                  <!--5-->
+                  <!--6-->
+                  <!--7-->
+                </div>
+                <div class="delivery-options-grid">
+                  <ol class="row-gutter-sm options-grid">
+                    {% comment %}30 total <li class="option col-6 col-md-4 col-lg-2">{% endcomment %}
+                  </ol>
+                </div>
+                <div class="row">
+                  <div class="col-12 same-day-message">
+                    <p>
+                      Please select an available delivery date.
+                    </p>
+                  </div>
+                  <div class="future-options col-12">
+                    <p>
+                      <label for="other-delivery-dates">
+                        Looking for a future delivery date?
+                      </label>
+                      <select id="other-delivery-dates" class="form-control">
+                        {% comment %} 61 total options {% endcomment %}
+                        <option value="" selected="selected" disabled="disabled">-- future delivery date --</option>
+                      </select>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </core-availability>
+        </div>
+      </div>
+    </div>
+  </cart-delivery-modal>
+  <edit-message-modal id="vjs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vjs-modal-title" aria-modal="true" style="padding-right: 17px;">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="vjs-modal-title" class="modal-title">Edit Card Message</h3>
+          <button class="close" type="button" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+          <!--2-->
+        </div>
+        <div class="modal-body">
+          <div class="edit-cart container-fluid">
+            <div class="row cart-item-summary">
+              <div class="col-12 cart-item">
+                <div class="product-details">
+                  <div class="detail-group name">
+                    <strong class="label">Be Bold on Your Birthday</strong>
+                  </div>
+                  <div class="detail-group delivery" id="deliveryZip">
+                    <strong class="label">Delivery To:</strong>
+                    <span>&nbsp;91803</span>
+                  </div>
+                  <div class="detail-group delivery" id="deliveryDate">
+                    <strong class="label">Delivery Date:</strong>
+                    <span>&nbsp;04/06/2023</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <form class="edit-card-form col-lg-6">
+                <div class="row">
+                  <!--1-->
+                  <div class="form-group col-12">
+                    <label for="card-type">
+                      Card Type
+                    </label>
+                    <select id="card-type" class="form-control" name="order_d_cart_type">
+                      <option value="Blank Card">Blank Card</option>
+                      <option value="No Card">No Card</option>
+                      <option value="Birthday">Birthday</option>
+                      <option value="Sympathy">Sympathy</option>
+                      <option value="Funeral">Funeral</option>
+                      <option value="Get Well">Get Well</option>
+                      <option value="I Love You">I Love You</option>
+                      <option value="Just Because">Just Because</option>
+                      <option value="Women's Day">Women's Day</option>
+                      <option value="Thank You">Thank You</option>
+                      <option value="Congratulations">Congratulations</option>
+                      <option value="Anniversary">Anniversary</option>
+                      <option value="Missing You">Missing You</option>
+                      <option value="New Baby">New Baby</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-12">
+                    <textarea
+                      customminlength="1"
+                      id="card-message" class="form-control" name="order_d_card_msg"
+                      placeholder="Your Card Message..."
+                      rows="5"
+                      maxlength="175"
+                    ></textarea>
+                    <small class="form-text">15 / 175</small>
+                    <!--3-->
+                    <!--4-->
+                    <div class="section-error"></div>
+                  </div>
+                  <div class="form-group col-12">
+                    <input
+                      customminlength="1"
+                      id="card-signature" class="form-control" name="order_d_card_sg"
+                      type="text"
+                      placeholder="Your Signature..."
+                      maxlength="30"
+                    >
+                    <div class="section-error"></div>
+                  </div>
+                </div>
+                <div class="row form-actions">
+                  <div class="col-12 col-md-6">
+                    <button class="btn btn-primary" type="submit">
+                      <!--1-->
+                      <span>Save Changes</span>
+                    </button>
+                  </div>
+                  <div class="col-12 col-md-6 action-link-md">
+                    <button class="as-arrows-link buttonCancel" type="button" data-dismiss="modal">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </edit-message-modal>
+</div>

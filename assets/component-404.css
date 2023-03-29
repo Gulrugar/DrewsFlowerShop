@@ -1,0 +1,36 @@
+/* h1.alternate */
+h1.alternate {
+  font-size: 3rem;
+  text-align: center;
+  padding: .625rem 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 990px) {
+  h1.alternate {
+    font-size: 4.75rem;
+    padding: 1rem 0;
+    margin-bottom: .625rem;
+  }
+}
+
+/* strong */
+
+/* div.container.not-found-404 */
+.not-found-404 {
+  padding-bottom: 1rem;
+}
+
+/* div.row-narrow.content-row */
+.not-found-404 .content-row {
+  align-items: center;
+}
+
+/* img */
+.not-found-404 .content-row .image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}

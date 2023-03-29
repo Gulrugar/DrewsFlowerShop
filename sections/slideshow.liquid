@@ -1,0 +1,154 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+
+  <slideshow-component class="slider-mobile-gutter page-width">
+  {%- if section.blocks.size > 1 -%}
+    <div class="slideshow__controls slideshow__controls--top slider-buttons">
+      <button
+        type="button"
+        class="slider-button slider-button--prev"
+        name="previous">
+        {% render 'icon-caret' %}
+      </button>
+
+      <div class="slider-counter slider-counter--dots">
+        <div class="slideshow__control-wrapper">
+          {%- for block in section.blocks -%}
+            <button
+              class="slider-counter__link slider-counter__link--dots link"
+              aria-label="Load slide {{ forloop.index }} of {{ forloop.length }}"
+              aria-controls="Slider-{{ section.id }}">
+              <span class="dot"></span>
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+      <button
+        type="button"
+        class="slider-button slider-button--next"
+        name="next"
+        aria-label="Next Slide"
+        aria-controls="Slider-{{ section.id }}">
+        {% render 'icon-caret' %}
+      </button>
+      <button type="button" class="slideshow__autoplay slider-button">
+        {% render 'icon-pause' %}
+        {% render 'icon-play' %}
+      </button>
+    </div>
+  {%- endif -%}
+
+  <!-- Slide Show -->
+  <div
+    class="slideshow banner banner--small grid grid--1-col slider slider--everywhere banner--mobile-bottom"
+    id="Slider-{{ section.id }}"
+    aria-live="polite"
+    aria-atomic="true"
+    data-autoplay="true"
+    data-speed="{{ section.settings.change_slides_speed }}">
+
+    {%- for block in section.blocks -%}
+      <!-- Slide -->
+      <div
+        class="slideshow__slide grid__item grid--1-col slider__slide"
+        id="Slide-{{ section.id }}-{{ forloop.index }}"
+        {{ block.shopify_attributes }}
+        role="group"
+        aria-roledescription="Slideshow Slide"
+        aria-label="{{ forloop.index }} of {{ forloop.length }}"
+        tabindex="-1">
+        <div class="slideshow__media banner__media media">
+          {%- if block.settings.image -%}
+            {%- assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round -%}
+            {% liquid
+                assign fetchpriority = 'auto'
+                if forloop.index == 1
+                  assign fetchpriority = 'high'
+                endif
+            %}
+            {{ block.settings.image | image_url: width: 1530 | image_tag: 
+             loading: 'lazy',
+             height: height,
+             sizes: "(min-width: 1200px) 1530px, (min-width: 992px) 1339px, (min-width: 768px) 100vw, 861px",
+             widths: '861, 991, 1339, 1530',
+             fetchpriority: fetchpriority
+             }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div class="slideshow__text-wrapper banner__content banner__content--middle-center banner--desktop-transparent">
+          <div class="slideshow__text banner__box content-container content-container--full-width-mobile">
+            {%- if block.settings.heading != blank -%}
+              <h2 class="banner__heading h1">
+                {{ block.settings.heading | escape }}
+              </h2>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank -%}
+              <div class="banner__buttons">
+                <a {% if block.settings.link %}href="{{ block.settings.link }}"{% else %}role="link"aria-disabled="true"{% endif %}class="button">
+                  {{ block.settings.button_label | escape }}
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+      <!-- Slide -->
+    {%- endfor -%}
+  </div>
+</slideshow-component>
+
+
+{% schema %}
+  {
+    "name": "Slideshow",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "range",
+        "id": "change_slides_speed",
+        "min": 3,
+        "max": 9,
+        "step": 2,
+        "unit": "s",
+        "label": "Slide Speed",
+        "default": 5
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "text",
+            "id": "heading",
+            "default": "Heading for Slide",
+            "label": "Heading"
+          }, {
+            "type": "text",
+            "id": "button_label",
+            "default": "Button label",
+            "label": "Button Label",
+            "info": "Attribute 'info' what is it"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "URL"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

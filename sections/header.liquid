@@ -1,0 +1,363 @@
+<link rel="stylesheet" href="{{ 'my-header-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'my-header-menu.css' | asset_url | stylesheet_tag }}</noscript>
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  .header {
+    padding: 1.5rem 4rem;
+  }
+
+  .header-wrapper {
+    margin-bottom: 4.6rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .header-wrapper {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="icon-reset" class="icon icon-close"  fill="none" viewBox="0 0 18 18" stroke="currentColor">
+    <circle r="8.5" cy="9" cx="9" stroke-opacity="0.2"/>
+    <path d="M6.82972 6.82915L1.17193 1.17097" stroke-linecap="round" stroke-linejoin="round" transform="translate(5 5)"/>
+    <path d="M1.22896 6.88502L6.77288 1.11523" stroke-linecap="round" stroke-linejoin="round" transform="translate(5 5)"/>
+  </symbol>
+
+  <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+    <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+  </symbol>
+</svg>
+
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }}">
+  <header class="header page-width">
+    <div class="nav-toggle">
+      <span class="nav-toggle__hamburger"></span>
+    </div>
+    <div class="header__heading">
+      <a href="{{ routes.root_url }}" >
+        {% render 'icon-from-you-flowers' %}
+        <span></span>
+      </a>
+    </div>
+    <div class="header__utility-links">
+      <div>
+        <ul class="utility-links__links">
+          {%- if shop.customer_accounts_enabled -%}
+            <li>
+              <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+                {% render 'icon-account' %}
+                <span>
+                  {%- liquid
+                    if customer
+                      echo 'Account'
+                    else
+                      echo 'Login'
+                    endif
+                  -%}
+                </span>
+              </a>
+            </li>
+          {% endif %}
+
+          <li>
+            <a href="{{ routes.cart_url }}">
+              <div class="cart-icon">
+                {% render 'icon-cart' %}
+                {%- if cart.item_count < 100 -%}
+                  <div class="cart-bubble">
+                    {{ cart.item_count }}
+                  </div>
+                {%- endif -%}
+              </div>
+              <span>Cart</span>
+
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="utility-links__search">
+        <predictive-search class="searchmodal__form search__search-bar" data-loading-text="Loading...">
+          <form
+            action="{{ routes.search_url }}"
+            method="get"
+            role="search"
+            class="search search-modal__form"
+          >
+            <div class="field">
+              <input
+                class="search__input field__input"
+                id="Search-In-Modal-1"
+                type="search"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="Search"
+                role="columnheader"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+              >
+              <label class="field__label" for="Search-In-Modal-1">
+                Search
+              </label>
+              <input type="hidden" name="options[prefix]" value="last">
+              <button type="reset" class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}" aria-label="Reset">
+                <svg class="icon icon-close" aria-hidden="true" focusable="false">
+                  <use xlink:href="#icon-reset">
+                </svg>
+              </button>
+              <button class="search__button field__button" aria-label="Search">
+                <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                  <use href="#icon-search">
+                </svg>
+              </button>
+            </div>
+
+            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+              <div class="predictive-search__loading-state">
+                <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+            </div>
+
+            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+
+          </form>
+        </predictive-search>
+        
+      </div>
+    </div>
+  </header>
+  
+  {% comment %}
+    this navbar is causing the flickering issue it appears to be the buttons
+  {% endcomment %}
+  <div class="navbar">
+    {% if section.settings.menu != blank %}
+      {%- for link in section.settings.menu.links -%}
+        <div>
+          {% if link.links != blank %}
+            <div class="navbar__list" id="navbar__list{{ forloop.index }}">
+              <ul class="list__content hidden">
+                {%- for childlink in link.links -%}
+                  <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+                {%- endfor -%}
+              </ul>
+              <button style="visibility: hidden;">
+                {{ link.title | escape }}
+              </button>
+            </div>
+          {% else %}
+            <div class="navbar__link">
+              <a href="{{ link.url }}">{{ link.title | escape }}</a>
+            </div>
+          {% endif %}
+        </div>
+      {%- endfor -%}
+    {% endif %}
+  </div>
+
+</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
+
+<div class="accordion hidden">
+  {% if section.settings.menu != blank %}
+  <a href="#" class="accordion__close-submenus"></a>
+  <span class="target-fix" id="accordion"></span>
+  <!-- Accordion Option -->
+  {%- for link in section.settings.menu.links -%}
+    <div>
+      {% if link.links !=blank %}
+        <span class="target-fix" id="accordion{{ forloop.index }}"></span>
+        
+        <a href="#accordion{{ forloop.index }}" id="open-accordion{{ forloop.index }}">{{ link.title | escape }}</a>
+        <a href="#accordion" id="close-accordion{{ forloop.index }}">{{ link.title | escape }}</a>
+        <div class="accordion-content">
+          <ul>
+            {%- for childlink in link.links -%}
+              <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {% else %}
+        <a href="{{ link.url }}" id="link-accordion">{{ link.title | escape }}</a>
+      {% endif %}
+    </div>
+  {%- endfor -%}
+  {% endif %}
+</div>
+
+
+{% javascript %}
+
+  class StickyHeader extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.header = document.querySelector('.section-header');
+      this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+      this.headerBounds = {};
+
+      if (this.headerIsAlwaysStick) {
+        this.header.classList.add('shopify-section-header-sticky');
+      };
+
+      this.currentScrollTop = 0;
+      this.preventReveal = false;
+      // this.predictiveSearch = this.querySelector('predictive-search')
+
+      this.onScrollHandler = this.onScroll.bind(this);
+      // this.hideHeaderOnScrollUp = () => this.preventReveal = true;
+
+      // this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.addEventListener('scroll', this.onScrollHandler, false);
+      
+      this.createObserver();
+    }
+
+    disconnectedCallback() {
+      // this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    createObserver() {
+      console.log('in createObserver')
+      let observer = new IntersectionObserver((entries, observer) => {
+        this.headerBounds = entries[0].intersectionRect;
+        observer.disconnect();
+      })
+
+      observer.observe(this.header)
+    }
+
+    onScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+      // if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+
+      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        // this is only for the reduce-logo-size option for sticky_header_type
+        this.header.classList.add('scrolled-past-header');
+        // if (this.preventHide) return;
+        requestAnimationFrame(this.hide.bind(this))
+      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        this.header.classList.add('scrolled-past-header');
+        if (!this.preventReveal) {
+          requestAnimationFrame(this.reveal.bind(this))
+        } else {
+          window.clearTimeout(this.isScrolling)
+          this.isScrolling = setTimeout(() => {
+            this.preventReveal = false;
+          }, 66)
+
+          requestAnimationFrame(this.hide.bind(this))
+        }
+      } else if (scrollTop <= this.headerBounds.top) {
+        this.header.classList.remove('scrolled-past-header');
+        requestAnimationFrame(this.reset.bind(this));
+      }
+
+      this.currentScrollTop = scrollTop;
+    }
+
+    hide() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+      // this.closeMenuDisclosure();
+      // this.closeSearchModal();
+    }
+
+    reveal() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.add('shopify-section-header-sticky', 'animate');
+      this.header.classList.remove('shopify-section-header-hidden');
+    }
+
+    reset() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate')
+    }
+
+    // closeMenuDisclosure() {
+    //   console.log('function logic')
+    // }
+
+    // closeSearchModal() {
+    //   console.log('function logic')
+    // }
+  }
+
+  customElements.define('sticky-header', StickyHeader);
+
+
+
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "class": "section-header",
+    "settings": [
+      {
+        "type": "select",
+        "id": "color_scheme",
+        "options": [
+          {
+            "value": "accent-1",
+            "label": "Accent 1"
+          }, {
+            "value": "accent-2",
+            "label": "Accent 2"
+          }, {
+            "value": "background-1",
+            "label": "Background 1"
+          }, {
+            "value": "background-2",
+            "label": "Background 2"
+          }
+        ],
+        "default": "accent-2",
+        "label": "Background color"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "main-menu",
+        "label": "Menu"
+      },
+      {
+        "type": "select",
+        "id": "sticky_header_type",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "on-scroll-up",
+            "label": "On Scroll Up"
+          },
+          {
+            "value": "always",
+            "label": "Always"
+          }
+        ],
+        "default": "none",
+        "label": "Sticky Header Type"
+      }
+    ]
+  }
+{% endschema %}

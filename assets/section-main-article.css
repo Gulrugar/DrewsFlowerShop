@@ -1,0 +1,97 @@
+/* div.wrap-title */
+
+/* h1.post-title */
+h1.post-title {
+  line-height: 1em;
+  text-align: center;
+}
+
+/* div.wrap */
+
+/* div.post-img */
+.post-img {
+  width: 35%;
+}
+
+.post-img,
+.post-info {
+  display: inline-block;
+}
+
+@media (max-width: 959px) {
+  .post-img {
+    margin-top: 5px;
+  }
+}
+
+/* img */
+.post-img img {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* div.post-info */
+.post-info {
+  width: 64%;
+  color: #212121;
+}
+
+.post-info {
+  vertical-align: top;
+  margin-top: 30px;
+}
+
+@media (max-width: 959px) {
+  .post-info {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 959px) {
+  .post-img,
+  .post-info {
+    width: 100%;
+  }
+}
+
+/* p.post-author */
+.post-info p {
+  margin: 0 20px 15px;
+  width: 100%;
+  display: inline-block;
+}
+
+.post-info p {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+@media (max-width: 959px) {
+  .post-info p {
+    padding: 5px 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 959px) {
+  .post-info p,
+  .post-body p {
+    font-size: 16px !important;
+    margin-left: 0;
+  }
+}
+
+/* p.post-copy */
+
+/* div.post-body */
+
+.post-body {
+  color: #212121;
+}
+
+@media (max-width: 959px) {
+  .post-body {
+    margin: 0;
+  }
+}

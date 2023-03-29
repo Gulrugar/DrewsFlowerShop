@@ -1,0 +1,72 @@
+{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}
+
+<div class="testimonials page-width">
+  <div class="container">
+    <h3 class="section-title">{{ section.settings.title }}</h3>
+    <div class="row">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'column' -%}
+          <div class="testimonial testimonial-{{ forloop.index }}">
+            <div class="testimonial-image">
+              <img src="{{ block.settings.image | image_url }}" alt="">
+            </div>
+            <div class="testimonial-text">
+              <p>
+                {{ block.settings.text }}
+              </p>
+              <span>
+                {{ block.settings.author }},
+                <br>
+                {{ block.settings.author_location }}
+              </span>
+            </div>
+          </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Testimonials",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "This is the title",
+        "label": "Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Testimonial Image"
+          }, {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "label": "Text"
+          }, {
+            "type": "text",
+            "id": "author",
+            "default": "Jon Doe",
+            "label": "Author Name"
+          }, {
+            "type": "text",
+            "id": "author_location",
+            "default": "Fake Lakes, Utah",
+            "label": "Author Location"
+          }
+        ]
+      }
+    ]
+
+  }
+{% endschema %}

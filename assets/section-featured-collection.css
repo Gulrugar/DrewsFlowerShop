@@ -1,0 +1,32 @@
+.featured-product-section {
+  text-align: center;
+}
+
+.featured-product-section h3 {
+  margin-bottom: 1.5rem;
+}
+
+.featured-product-section .shop-all {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.featured-product-section .shop-all a {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+}
+
+/* .featured-product-section .shop-all a::after {
+  content: '\00A0\00BB';
+  font-size: 2rem;
+  font-weight: normal;
+} */
+
+.featured-product-section .black * {
+  color: black;
+}
+.featured-product-section .white * {
+  color: white;
+}

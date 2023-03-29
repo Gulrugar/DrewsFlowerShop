@@ -1,0 +1,28 @@
+.collection-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 125px;
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, .25);
+}
+
+@media screen and (min-width: 990px) {
+  .collection-banner {
+    height: 150px;
+  }
+}
+
+.collection-banner__heading {
+  background-color: white;
+  color: black;
+  line-height: 1;
+  padding: 1rem;
+}
+
+.collection-info {
+  color: #212121;
+  padding: 1rem 4rem;
+}

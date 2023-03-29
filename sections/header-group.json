@@ -1,0 +1,44 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to Drew's Flower Shop",
+            "text_alignment": "center",
+            "link_text": "",
+            "link": ""
+          }
+        },
+        "announcement-bar-1": {
+          "type": "announcement",
+          "settings": {
+            "text": "Order Now & Save!",
+            "text_alignment": "center",
+            "link_text": "View all Easter Flowers",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0",
+        "announcement-bar-1"
+      ],
+      "settings": {
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-0": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/slide-1.webp",
+            "heading": "Birthday Blooms",
+            "button_label": "Shop All Birthday Flowers",
+            "link": "https:\/\/youtube.com"
+          }
+        },
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/slide-2.webp",
+            "heading": "Need It Today?",
+            "button_label": "Shop All Same Day Flowers",
+            "link": "https:\/\/youtube.com"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/slide-3.webp",
+            "heading": "Say I Love You",
+            "button_label": "Shop Love & Romance",
+            "link": "https:\/\/youtube.com"
+          }
+        },
+        "9bab01eb-8847-4bce-8ad6-bcd81c920c23": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/slide-4.webp",
+            "heading": "Send Your Love",
+            "button_label": "Shop Sympathy Flowers",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide-0",
+        "slide-1",
+        "slide-2",
+        "9bab01eb-8847-4bce-8ad6-bcd81c920c23"
+      ],
+      "settings": {
+        "change_slides_speed": 5
+      }
+    },
+    "1d901b79-9a86-4a39-9735-12035f029e70": {
+      "type": "mobile-quick-links",
+      "settings": {
+      }
+    },
+    "featured_collection": {
+      "type": "featured_collection",
+      "settings": {
+        "title": "Featured Birthday Flowers",
+        "collection": "birthday-flowers",
+        "products_to_show": 6,
+        "columns_desktop": 6,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "text_color": "black",
+        "hide_mobile": true
+      }
+    },
+    "hero_banner": {
+      "type": "section-hero-banner",
+      "blocks": {
+        "hero-header-0": {
+          "type": "hero-header",
+          "settings": {
+            "heading": "Same Day Delivery Flowers & Gifts",
+            "subheading": "Need it today?",
+            "button_label": "Shop Same Day Flowers",
+            "button_link": "https:\/\/youtube.com"
+          }
+        },
+        "hero-image-0": {
+          "type": "hero-image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home-span-54.webp"
+          }
+        }
+      },
+      "block_order": [
+        "hero-header-0",
+        "hero-image-0"
+      ],
+      "settings": {
+        "flip_headers": true,
+        "flip": false
+      }
+    },
+    "c269b801-851e-46e7-b3c8-bc8b9d75b92a": {
+      "type": "featured_collection",
+      "settings": {
+        "title": "Featured Birthday Flowers",
+        "collection": "birthday-flowers",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "text_color": "black",
+        "hide_mobile": false
+      }
+    },
+    "6bb8d24c-c9e5-48d6-8542-f7a3881e5e23": {
+      "type": "section-hero-banner",
+      "blocks": {
+        "template--17896198078744__6bb8d24c-c9e5-48d6-8542-f7a3881e5e23-167761421144b5216a-0": {
+          "type": "hero-header",
+          "settings": {
+            "heading": "We're There When You Can't Be",
+            "subheading": "Missing Your Bestie?",
+            "button_label": "Shop Just Because Flowers",
+            "button_link": ""
+          }
+        },
+        "template--17896198078744__6bb8d24c-c9e5-48d6-8542-f7a3881e5e23-167761421144b5216a-1": {
+          "type": "hero-image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home-span-9.webp"
+          }
+        }
+      },
+      "block_order": [
+        "template--17896198078744__6bb8d24c-c9e5-48d6-8542-f7a3881e5e23-167761421144b5216a-0",
+        "template--17896198078744__6bb8d24c-c9e5-48d6-8542-f7a3881e5e23-167761421144b5216a-1"
+      ],
+      "settings": {
+        "flip_headers": true,
+        "flip": true
+      }
+    },
+    "fd0c8482-8a1b-41b2-803f-47dde83ac6d2": {
+      "type": "featured_collection",
+      "settings": {
+        "title": "Featured Birthday Flowers",
+        "collection": "birthday-flowers",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "text_color": "black",
+        "hide_mobile": false
+      }
+    },
+    "8f8dda2e-7be4-41a6-9100-a700c6ef81be": {
+      "type": "section-hero-banner",
+      "blocks": {
+        "template--17896198078744__8f8dda2e-7be4-41a6-9100-a700c6ef81be-167761421144b5216a-0": {
+          "type": "hero-header",
+          "settings": {
+            "heading": "Shop Our Instagram Favorites",
+            "subheading": "Join the fun",
+            "button_label": "Follow @FromYouFlowers",
+            "button_link": ""
+          }
+        },
+        "template--17896198078744__8f8dda2e-7be4-41a6-9100-a700c6ef81be-167761421144b5216a-1": {
+          "type": "hero-image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home-span-27.webp"
+          }
+        }
+      },
+      "block_order": [
+        "template--17896198078744__8f8dda2e-7be4-41a6-9100-a700c6ef81be-167761421144b5216a-0",
+        "template--17896198078744__8f8dda2e-7be4-41a6-9100-a700c6ef81be-167761421144b5216a-1"
+      ],
+      "settings": {
+        "flip_headers": true,
+        "flip": false
+      }
+    },
+    "testimonials": {
+      "type": "section-testimonials",
+      "blocks": {
+        "column-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/52-526237_avatar-profile-hd-png-download.png",
+            "text": "<p>Beautiful flowers delivered same day reasonably priced. Will be a returning customer!<\/p>",
+            "author": "Jon Doe",
+            "author_location": "Fake Lakes, Utah"
+          }
+        },
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/81408-middle.png",
+            "text": "<p>Flower were fresh and arranged exactly as ordered. Very impressed with the quality. Wife loved them.<\/p>",
+            "author": "Tammy",
+            "author_location": "New York, New York"
+          }
+        },
+        "column-2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/portrait.png",
+            "text": "<p>The flowers were sent to my mother for her birthday and she loved them. She loved the way they were arranged and the quality of the flowers. I am ordering more today for my mother-in-law!<\/p>",
+            "author": "Debra",
+            "author_location": "Los Angeles, California"
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "column-1",
+        "column-2"
+      ],
+      "settings": {
+        "title": "What our customers are saying"
+      }
+    },
+    "a7baf9b0-60a7-4be9-aac4-12c721ca125f": {
+      "type": "section-rich-text",
+      "blocks": {
+        "header-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Hand Delivered Flowers Today",
+            "alignment": "left"
+          }
+        },
+        "content-0": {
+          "type": "content",
+          "settings": {
+            "content": "<p>From You Flowers is a <a href=”https:\/\/youtube.com” >same day flower delivery<\/a> and gift specialist. When you are in need of a last-minute gift to send to celebrate a birthday, anniversary, Mother's Day and more we offer beautiful same day flowers, gifts and plants for delivery today. Our local florist partners near you are here to create a gift with fresh blooms, delivered with a free card message that you can write to personalize the gift. For same day delivery simply choose a same day item and place the order prior to 3pm in the delivery zip code, we'll do the rest! Whether you are looking for a classic one dozen red roses, modern rainbow roses or a mixed floral bouquet we have flower stems and colors that are perfect for everyone in your life.<\/p>"
+          }
+        },
+        "8313b6d7-70e9-45d6-bf1c-3ae2f37f10c3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Online Flower Experts",
+            "alignment": ""
+          }
+        },
+        "e56494b1-c941-4098-8e8a-fbf4927f32bc": {
+          "type": "content",
+          "settings": {
+            "content": "<p>When you need to find a beautiful gift to send to a loved one turn to From You Flowers the online flower delivery experts. We offer hundreds of online gifts to choose from for quick delivery and an easy check-out process. Simply choose what type of gift you would like to send from fruit gift baskets to succulent plants and flower arrangements. A selection of our flowers can be customized with a personalized photo vase, which invites you to upload a photo and add text that will make the vase a one-of-a-kind gift. Celebrate your love this year with a perfect Mother's Day flower delivery.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "header-0",
+        "content-0",
+        "8313b6d7-70e9-45d6-bf1c-3ae2f37f10c3",
+        "e56494b1-c941-4098-8e8a-fbf4927f32bc"
+      ],
+      "settings": {
+      }
+    },
+    "74690968-466b-46fb-afc3-1bb24f116119": {
+      "type": "section-featured-blogs",
+      "settings": {
+        "heading": "What's Blooming on Our Blog",
+        "blog": "from-you-flowers-blog",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "1d901b79-9a86-4a39-9735-12035f029e70",
+    "featured_collection",
+    "hero_banner",
+    "c269b801-851e-46e7-b3c8-bc8b9d75b92a",
+    "6bb8d24c-c9e5-48d6-8542-f7a3881e5e23",
+    "fd0c8482-8a1b-41b2-803f-47dde83ac6d2",
+    "8f8dda2e-7be4-41a6-9100-a700c6ef81be",
+    "testimonials",
+    "a7baf9b0-60a7-4be9-aac4-12c721ca125f",
+    "74690968-466b-46fb-afc3-1bb24f116119"
+  ]
+}

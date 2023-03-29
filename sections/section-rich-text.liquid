@@ -1,0 +1,80 @@
+{{ 'component-rich-text.css' | asset_url | stylesheet_tag }}
+
+<div class="rich-text page-width">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+            <h2 class="{{ block.settings.alignment }}">{{ block.settings.heading }}</h2>
+            {%- when 'content' -%}
+            <div class="rich-text__content">
+              {{ block.settings.content }}
+            </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Rich Text",
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "This is the default Heading",
+            "label": "Heading"
+          }, {
+            "type": "select",
+            "id": "alignment",
+            "label": "Header Alignment",
+            "options": [
+              {
+                "value": "",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          }
+        ]
+      }, {
+        "type": "content",
+        "name": "Content",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "content",
+            "default": "<p>This is the richtext content</p>",
+            "label": "Rich text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Rich Text",
+        "blocks": [
+          {
+            "type": "heading"
+          }, {
+            "type": "content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

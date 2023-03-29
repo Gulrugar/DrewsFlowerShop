@@ -1,0 +1,76 @@
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-0": {
+          "type": "text",
+          "settings": {
+            "heading": "Join Over 8 Million Satisfied Customers",
+            "alignment": "center",
+            "subtext": "<p>Same Day Flower Delivery, We Guarantee the Florist Arranged Flowers will be Delivered Today!<\/p>"
+          }
+        },
+        "footer-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/newsweek-horizontal.jpg",
+            "image_width": 275,
+            "alignment": "center"
+          }
+        },
+        "footer-2": {
+          "type": "link_list",
+          "settings": {
+            "heading": "About Us",
+            "menu": "footer"
+          }
+        },
+        "footer-3": {
+          "type": "link_list",
+          "settings": {
+            "heading": "My Account",
+            "menu": "footer"
+          }
+        },
+        "footer-4": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer-blog"
+          }
+        },
+        "footer-5": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Occasions and Discounts",
+            "menu": "footer"
+          }
+        },
+        "footer-6": {
+          "type": "contact",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/newsweek-horizontal.jpg",
+            "image_width": 225
+          }
+        }
+      },
+      "block_order": [
+        "footer-0",
+        "footer-1",
+        "footer-2",
+        "footer-3",
+        "footer-4",
+        "footer-5",
+        "footer-6"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

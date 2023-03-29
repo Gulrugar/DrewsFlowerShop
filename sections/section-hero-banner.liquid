@@ -1,0 +1,109 @@
+{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
+
+
+<div class="hero-banner page-width {% if section.settings.flip %}flip{% endif %}">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'hero-header' -%}
+      <div
+        class="hero-header"
+        {{ block.shopify_attributes }}>
+        {%- if section.settings.flip_headers -%}
+          <div class="hero-header__subheader">{{ block.settings.subheading }}</div>
+          <div class="font-heading-family h1">{{ block.settings.heading }}</div>
+        {%- else -%}
+          <div class="font-heading-family h1">{{ block.settings.heading }}</div>
+          <div class="hero-header__subheader">{{ block.settings.subheading }}</div>
+        {%- endif -%}
+        <a href="{{ block.settings.button_link }}" class="button">{{ block.settings.button_label }}</a>
+      </div>
+      {%- when 'hero-image' -%}
+      <div class="hero-image" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          {%- assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round -%}
+          {{ block.settings.image | image_url: width: 880 | image_tag: 
+           loading: 'lazy',
+           width: 880,
+           height: height,
+           sizes: "100vw",
+           widths: '320, 375, 414, 680, 750, 828, 880' }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+    {%- endcase -%}
+  {%- endfor -%}
+</div>
+
+
+{% schema %}
+  {
+    "name": "hero-banner",
+    "blocks": [
+      {
+        "type": "hero-header",
+        "name": "Hero Header",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "This is the heading",
+            "label": "Heading"
+          }, {
+            "type": "text",
+            "id": "subheading",
+            "default": "This is the subheading",
+            "label": "Subheading"
+          }, {
+            "type": "text",
+            "id": "button_label",
+            "default": "Button label",
+            "label": "Button Label"
+          }, {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+          }
+        ]
+      }, {
+        "type": "hero-image",
+        "name": "Hero Image",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Hero Image",
+            "info": "Use aspect ratio 880x400 ~ 2.2"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "flip_headers",
+        "default": false,
+        "label": "Flip headers"
+      }, {
+        "type": "checkbox",
+        "id": "flip",
+        "default": false,
+        "label": "Flip Image position Left/Right on desktop"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Banner",
+        "blocks": [
+          {
+            "type": "hero-header"
+          }, {
+            "type": "hero-image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

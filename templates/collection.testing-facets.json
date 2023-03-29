@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "facets": {
+      "type": "facets-testing",
+      "settings": {
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true
+      }
+    }
+  },
+  "order": ["facets"]
+}

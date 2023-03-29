@@ -1,0 +1,242 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+{{ 'dawn-base.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
+
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
+
+<script src="{{ 'my-sort.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  .template-search__header {
+    margin-bottom: 3rem;
+  }
+
+  .template-search__search {
+    margin: 0 auto 3.5rem;
+    max-width: 74.1rem;
+  }
+
+  .template-search__search .search {
+    margin-top: 3rem;
+  }
+
+  .template-search--empty {
+    padding-bottom: 18rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-search__header {
+      margin-bottom: 5rem;
+    }
+  }
+
+  .search__button .icon {
+    height: 1.8rem;
+  }
+</style>
+
+
+{%- liquid
+  assign sort_by = search.sort_by | default: search.default_sort_by
+  assign terms = search.terms | escape
+  assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="template-search section-{{ section.id }}-padding">
+  <div class="template-search__header page-width">
+    <h1 class="h2 center">
+      {%- if search.performed -%}
+        Search Results
+      {%- else -%}
+        Search
+      {%- endif -%}
+    </h1>
+    <div class="template-search__search">
+      <predictive-search data-loading-text="Loading...">
+        <main-search>
+          <form
+            action="{{ routes.search_url }}"
+            method="get"
+            role="search"
+            class="search"
+          >
+            <div class="field">
+              <input
+                class="search__input field__input"
+                id="Search-In-Template"
+                type="search"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="Search"
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="predictive-search-results"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+              >
+              <label class="field__label" for="Search-In-Template">Search</label>
+              <input type="hidden" name="options[prefix]" value="last">
+
+              <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+                <div class="predictive-search__loading-state">
+                  <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </div>
+              <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+
+              <button type="reset" class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}" aria-label="reset">
+                <svg class="icon icon-close" aria-hidden="true" focusable="false">
+                  <use xlink:href="#icon-reset">
+                </svg>
+              </button>
+              <button type="submit" class="search__button field__button" aria-label="search">
+                <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                  <use xlink:href="#icon-search">
+                </svg>
+              </button>
+            </div>
+          </form>
+        </main-search>
+      </predictive-search>
+    </div>
+
+    {%- if search.performed -%}
+      {% assign searchResultsProducts = search.results | where: 'object_type', 'product' %}
+      {%- if searchResultsProducts.size == 0 and search.filters == empty -%}
+        <p role="status">
+          No results found for “{{ search.terms }}”. Check the spelling or use a different word or phrase.
+        </p>
+      {%- endif -%}
+      
+      {%- if searchResultProducts.size > 0 -%}
+        <hr>
+        {%- paginate search.results by 24 -%}
+          {%- assign pageProductCap = paginate.current_page | times: 24 -%}
+          {%- capture paginate_info -%}
+            Showing {{ paginate.current_offset | plus: 1 }}
+            thru {{ searchResultsProducts.size | at_most: pageProductCap }} of ({{ searchResultsProducts.size }}) "{{ search.terms }}" items
+          {%- endcapture -%}
+
+          <facet-filters-form>
+            <input type="hidden" name="q" value="">
+            <form id="FacetSortForm">
+              <input type="hidden" name="q" value="{{ search.terms | escape }}">
+              <input type="hidden" name="options[prefix]" value="last">
+              <div class="facet-filters sorting">
+                <div class="facet-filters__search-info hidden">
+                  <span>{{ paginate_info }}</span>
+                </div>
+                <div class="facet-filters__field">
+                  <h2 class="facet-filters__label caption-large text-body">
+                    <label for="SortBy">Sort By:</label>
+                  </h2>
+                  <div class="select">
+                    {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
+                    <select
+                      name="sort_by"
+                      class="facet-filters__sort select__select caption-large"
+                      id="SortBy">
+                      <option value="best-selling" {% if "best-selling" == sort_by %}selected="selected"{% endif %}>
+                        Best Selling
+                      </option>
+                      <option value="price-ascending" {% if "price-ascending" == sort_by %}selected="selected"{% endif %}>
+                        Price: Low to High
+                      </option>
+                      <option value="price-descending" {% if "price-descending" == sort_by %}selected="selected"{% endif %}>
+                        Price: High to Low
+                      </option>
+                    </select>
+                    {% render 'icon-caret' %}
+                  </div>
+                </div>
+              </div>
+            </form>
+          </facet-filters-form>
+
+          <div id="ProductGridContainer">
+            <div
+              class="row product-listings"
+              id="product-grid"
+              data-id="{{ section.id }}">
+              {%- for product in searchResultsProducts -%}
+                    {% assign lazy_load = false %}
+                    {%- if forloop.index > 2 -%}
+                      {%- assign lazy_load = true -%}
+                    {%- endif -%}
+                    {% render 'card-product' 
+                    , card_product: product,
+                    lazy_load: lazy_load,
+                    columns_desktop: 4,
+                    show_details: true %}
+              {%- endfor -%}
+            </div>
+
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, paginate_info: paginate_info %}
+            {%- endif -%}
+          </div>
+
+        {%- endpaginate -%}
+      {%- endif -%}
+
+    {%- endif -%}
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 36
+      }
+    ]
+  }
+{% endschema %}

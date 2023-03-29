@@ -1,0 +1,120 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'my-sort.js' | asset_url }}" defer="defer"></script>
+
+
+<div class="collection-product-grid page-width">
+  <hr>
+  {%- paginate collection.products by section.settings.products_per_page -%}
+
+    {%- assign pageProductCap = paginate.current_page | times: 8 -%}
+
+    {%- capture paginate_info -%}
+      Showing {{ paginate.current_offset | plus: 1 }}
+      thru {{ collection.all_products_count | at_most: pageProductCap}} of ({{ collection.all_products_count }}) "{{ collection.title }}" items
+    {%- endcapture -%}
+    <facet-filters-form>
+      <form id="FacetSortForm">
+        <div class="facet-filters sorting">
+          <div class="facet-filters__search-info hidden-np">
+            <span>{{ paginate_info }}</span>
+          </div>
+          <div class="facet-filters__field">
+            <div class="facet-filters__label">
+              <label for="SortBy">Sort By:</label>
+            </div>
+            <div class="select">
+              {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+              <select
+                name="sort_by"
+                class="facet-filters__sort select__select caption-large"
+                id="SortBy">
+                <option value="best-selling" {% if "best-selling" == sort_by %}selected="selected"{% endif %}>
+                  Best Selling
+                </option>
+                <option value="price-ascending" {% if "price-ascending" == sort_by %}selected="selected"{% endif %}>
+                  Price: Low to High
+                </option>
+                <option value="price-descending" {% if "price-descending" == sort_by %}selected="selected"{% endif %}>
+                  Price: High to Low
+                </option>
+              </select>
+              {% render 'icon-caret' %}
+            </div>
+          </div>
+        </div>
+      </form>
+    </facet-filters-form>
+
+    <div id="ProductGridContainer">
+      <div
+        class="row product-listings"
+        id="product-grid"
+        data-id="{{ section.id }}">
+        {%- for product in collection.products -%}
+          {% assign lazy_load = false %}
+          {%- if forloop.index > 2 -%}
+            {%- assign lazy_load = true -%}
+          {%- endif -%}
+          {% render 'card-product' 
+           , card_product: product,
+           lazy_load: lazy_load,
+           columns_desktop: 4,
+           show_details: true %}
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        {% render 'pagination', paginate: paginate, paginate_info: paginate_info %}
+      {%- endif -%}
+    </div>
+
+  {%- endpaginate -%}
+
+  <div class="row related-links">
+    <div class="col">
+      {% comment %}
+      use meta data here for related collections
+      {% endcomment %}
+      {%- for other_collection in collections -%}
+        {%- unless other_collection.title == collection.title -%}
+          <a href="#" class="color-accent-2">{{ other_collection.title }}</a>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+
+  {%- unless collection.metafields.custom.collection_rich_text == blank -%}
+    {{ 'component-rich-text.css' | asset_url | stylesheet_tag }}
+  {%- endunless -%}
+
+
+
+  <div class="rich-text">
+    <div class="rich-text__content">
+      {{ collection.metafields.custom.collection_rich_text | metafield_tag }}
+    </div>
+  </div>
+
+
+
+</div>
+
+{% schema %}
+  {
+    "name": "Product Grid",
+    "settings": [
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "min": 8,
+        "max": 24,
+        "step": 4,
+        "default": 8,
+        "label": "Products per page"
+      }
+    ]
+  }
+{% endschema %}

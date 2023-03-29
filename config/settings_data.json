@@ -1,0 +1,23 @@
+{
+  "current": {
+    "colors_text": "#ffc0cb",
+    "colors_background_1": "#fff",
+    "colors_background_2": "#404040",
+    "colors_accent_1": "#f3f3f3",
+    "colors_accent_2": "#635da8",
+    "type_body_font": "poppins_n4",
+    "type_heading_font": "playfair_display_n4"
+  },
+  "presets": {
+    "Default": {
+      "type_body_font": "poppins_n4",
+      "type_heading_font": "playfair_display_n4",
+      "colors_text": "#ffc0cb",
+      "colors_background_1": "#fff",
+      "colors_background_2": "#404040",
+      "colors_accent_1": "#f3f3f3",
+      "colors_accent_2": "#635da8",
+      "page_width": 1500
+    }
+  }
+}

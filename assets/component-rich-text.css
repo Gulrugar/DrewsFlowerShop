@@ -1,0 +1,25 @@
+.rich-text {
+  width: 100%;
+  background-color: white;
+  color: black;
+  padding: 1rem;
+}
+
+.rich-text h2 {
+  padding: 1rem 0;
+}
+
+.rich-text__content a {
+  color: rgb(var(--color-base-accent-2));
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.rich-text__content a:hover {
+  text-decoration: underline;
+}
+
+.rich-text__content ul {
+  list-style: outside;
+  padding-left: 2rem;
+}

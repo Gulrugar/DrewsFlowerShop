@@ -1,0 +1,22 @@
+.announcement-bar {
+  padding: .25em;
+  color: #fff;
+  background-color: black;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.announcement-bar p {
+  display: inline-block;
+}
+
+.announcement-bar .icon-arrow {
+  display: inline-block;
+  pointer-events: none;
+  margin-left: 0.8rem;
+  margin-bottom: 0.2rem;
+  vertical-align: middle;
+}
+
+.announcement-bar a {
+  color: #fff;
+}

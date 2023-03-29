@@ -1,0 +1,135 @@
+/* 1 */
+.banner__content {
+  padding: 0;
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* 1 */
+.banner__box {
+  padding: 4rem 3.5rem;
+  position: relative;
+  height: fit-content;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  word-wrap: break-word;
+  z-index: 1;
+}
+
+/* 2 */
+.banner {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+/* 31 */
+.banner__box {
+  text-align: center;
+}
+
+/* 48 */
+.slideshow__text>* {
+  max-width: 100%;
+}
+
+/* 54 */
+@media screen and (max-width: 749px) {
+  .banner--small .banner__content {
+    min-height: 28rem;
+  }
+}
+
+/* 72 */
+@media screen and (min-width: 750px) {
+  .banner--small {
+    min-height: 42rem;
+  }
+}
+
+/* 104 */
+@media screen and (min-width: 750px) {
+  .banner__content.banner__content--middle-center {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 131 */
+@media screen and (max-width: 749px) {
+  .banner:not(.banner--stacked) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* 145 */
+.banner__media {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* 173 */
+@media screen and (min-width: 750px) {
+  .banner__media {
+    height: 100%;
+  }
+}
+
+/* 361 */
+.banner__box>*+.banner__text {
+  margin-top: 1.5rem;
+}
+
+/* 366 */
+@media screen and (min-width: 750px) {
+  .banner__box>*+.banner__text {
+    margin-top: 2rem;
+  }
+}
+
+/* 375 */
+.banner__box>*:first-child {
+  margin-top: 0;
+}
+
+/* 386 */
+@media screen and (min-width: 750px) {
+  .banner__box {
+    width: auto;
+    max-width: 71rem;
+    min-width: 45rem;
+  }
+}
+
+/* 399 */
+.banner__heading {
+  margin-bottom: 0;
+}
+
+/* 403 */
+.banner__box .banner__heading+* {
+  margin-top: 1rem;
+}
+
+/* 407 */
+.banner__buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 45rem;
+  word-break: break-word;
+}
+
+/* 437 */
+.banner__box>*+.banner__buttons {
+  margin-top: 2rem;
+}

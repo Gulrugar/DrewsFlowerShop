@@ -1,0 +1,33 @@
+<div class="product-listings__listing product-listings__listing-{{ columns_desktop }}">
+  <a href="{{ card_product.url }}">
+    <div class="listing__image">
+      <img
+        srcset="
+      {%- if card_product.featured_image.width >= 165 -%}
+        {{ card_product.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+      {%- if card_product.featured_image.width >= 360 -%}
+        {{ card_product.featured_image | image_url: width: 360 }} 360w,{%- endif -%}
+      {%- if card_product.featured_image.width >= 533 -%}
+        {{ card_product.featured_image | image_url: width: 533 }} 533w,{%- endif -%}
+      {%- if card_product.featured_image.width >= 720 -%}
+        {{ card_product.featured_image | image_url: width: 720 }} 720w,{%- endif -%}
+      {%- if card_product.featured_image.width >= 940 -%}
+        {{ card_product.featured_image | image_url: width: 940 }} 940w,{%- endif -%}
+      {%- if card_product.featured_image.width >= 1066 -%}
+        {{ card_product.featured_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+      {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
+      src="{{ card_product.featured_image | image_url: width: 533 }}"
+      sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4}}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw -120px) / 3), calc((100vw - 35px) / 2)"
+      alt="{{ card_product.featured_image | image_url: width: 533 }}"
+      {% unless lazy_load == false %}loading="lazy"{% endunless %}width="{{ card_product.featured_image.width }}"height="{{ card_product.featured_image.height }}">
+    </div>
+    {%- if show_details -%}
+      <p>{{ card_product.title | escape }}</p>
+    {%- endif -%}
+
+    <p class="price">
+      <s>{{ card_product.compare_at_price | money_with_currency }}</s>
+      <b>{{ card_product.price | money_with_currency }}</b>
+    </p>
+  </a>
+</div>

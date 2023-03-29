@@ -1,0 +1,118 @@
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media and screen (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{% endstyle %}
+<div class="wrap-head">
+  <div class="wrap">
+    <a href="/">
+      {%- render 'icon-from-you-flowers' -%}
+    </a>
+    <a href="/" class="shop">Shop Flowers & Gifts for Same Day Delivery »</a>
+    <a href="/" class="shop-mobile">Shop Same Day Delivery »</a>
+  </div>
+</div>
+<div class="page-width section-{{ section.id }}-padding">
+  {%- paginate blog.articles by 2 -%}
+    <div class="wrap-title">
+      <h1>{{ blog.title }}</h1>
+    </div>
+    <div class="wrap">
+    {%- for article in blog.articles -%}
+      <div class="list-post">
+        <p class="list-title">
+          <a href="{{ article.url }}">{{ article.title }} »</a>
+        </p>
+        <div class="list-img">
+          <a href="{{ article.url }}">
+            <img src="{{ article.image | image_url: width: 950 }}" alt="{{ article.image.alt }}" fetchpriority="high">
+          </a>
+        </div>
+        <div class="list-details">
+          
+          <p class="list-summary">
+            {%- if article.excerpt.size > 0 -%}
+              {{ article.excerpt }}
+            {%- else -%}
+              {{ article.content | strip_html | truncatewords: 100 }}
+            {%- endif -%}
+          </p>
+          <p class="list-author">Author:&nbsp;{{ article.author }}</p>
+          <p class="list-date">Date:&nbsp;{{ article.published_at | date: format: 'date'  }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+    </div>
+  
+    {%- if paginate.pages > 1 -%}
+      <div class="list-pagination">
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}">
+            « Older
+          </a>
+        {%- else -%}
+            « Older
+        {%- endif -%}
+          |  
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}">
+            Newer »
+          </a>
+        {%- else -%}
+            Newer »
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    
+  {%- endpaginate -%}
+</div>
+
+<p class="footer">
+  Copyright &copy; 1999 - 2023
+  <a href="/">From You Flowers</a>
+  , LLC. All rights reserved.
+</p>
+
+{% schema %}
+  {
+    "name": "Main Blog",
+    "tag": "section",
+    "class": "blog-section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Main Blog Settings"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 36
+      }
+    ]
+  }
+{% endschema %}

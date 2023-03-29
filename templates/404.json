@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/404.webp",
+        "content": "<h3><em>Sorry, the page that your're looking for isn't currently in bloom.<\/em><\/h3><p><\/p><p>The URL you are trying to access is not available. If you think you have reached this page in error. please double check the URL and try again. Or you may access the From You Flowers main website at: <a href=\"\/\" title=\"\/\">Home<\/a><\/p><p>If you wish to contact us, please visit our <a href=\"\/pages\/contact\" title=\"Contact\">contact page.<\/a><\/p>",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

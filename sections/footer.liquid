@@ -1,0 +1,302 @@
+<link
+  rel="stylesheet"
+  href="{{ 'footer.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'">
+<noscript>{{ 'footer.css' | asset_url | stylesheet_tag }}</noscript>
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding: 2rem 4rem 0;
+  }
+
+  .contact li:hover {
+    text-decoration: underline;
+  }
+{% endstyle %}
+
+<footer class="section-{{ section.id }}-padding">
+  <div class="footer__content-top">
+    <div class="footer__blocks-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="footer-block" {{ block.shopify_attributes }}>
+
+
+          {%- case block.type -%}
+            {%- when '@app' -%}
+            {% render block %}
+            {%- when 'text' -%}
+            {%- if block.settings.heading != blank -%}
+              <h1 class="footer-block__heading font-heading-black {{ block.settings.alignment }}">{{- block.settings.heading | escape -}}</h1>
+            {%- endif -%}
+            <div class="footer-block__details-content {{ block.settings.alignment }}">
+              {{ block.settings.subtext }}
+            </div>
+            {%- when 'image' -%}
+            <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+              {%- if block.settings.image != blank -%}
+                {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                <div class="footer-block__image-wrapper desktop-hidden" style="max-width: min(100%, {{ block.settings.image_width }}px);">
+                  <img
+                    srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                    src="{{ block.settings.image | image_url: width: 760 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}">
+                </div>
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: "placeholder-svg placeholder" }}
+              {%- endif -%}
+            </div>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="footer__blocks-wrapper my-row">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'link_list' -%}
+          <div class="footer-block__accordion-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <p class="footer-block__list-heading">{{- block.settings.heading | escape -}}</p>
+            {%- endif -%}
+            {%- if block.settings.menu != blank -%}
+              <ul class="footer-block__details-content list-unstyled hidden">
+                {%- for link in block.settings.menu.links -%}
+                  <li>
+                    <a href="{{ link.url }}" class="link link--text list-menu__item--link no-underline">{{ link.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+          {%- when 'contact' -%}
+          <div class="footer-block__contact" {{ block.shopify_attributes }}>
+            <div class="contact">
+              <p class="contact__heading font-body-bold">Contact</p>
+              <ul>
+                <li><a class="no-underline">{% render 'icon-phone-solid' %}&nbsp;Contact Us</a></li>
+                <li><a  class="no-underline">{% render 'icon-envelope-solid' %}&nbsp;Email</a></li>
+                <li><a class="no-underline">{% render 'icon-chat-solid' %}&nbsp;Click to Chat</a></li>
+              </ul>
+            </div>
+            <div class="newsletter">
+              <p>
+                <label for="NewsletterForm--{{ section.id }}">
+                  Subscribe for Exclusive Email Offers
+                </label>
+              </p>
+              {% form 'customer' %}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="form-control"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  placeholder="Your Email Address"
+                  required>
+                <button 
+                  type="submit"
+                  class="btn btn-tertiary"
+                  name="commit"
+                  id="Subscribe"
+                >
+                  Sign Me Up
+                </button>
+              {% endform %}
+            </div>
+            <div class="contact__social-list">
+              <p class="contact__heading font-body-bold">Stay In Touch</p>
+              <ul>
+                <li>
+                  <a href="http://facebook.com" target="_blank">{% render 'icon-facebook' %}</a>
+                </li>
+                <li>
+                  <a href="http://instagram.com" target="_blank">{% render 'icon-instagram' %}</a>
+                </li>
+                <li>
+                  <a href="http://youtube.com" target="_blank">{% render 'icon-youtube' %}</a>
+                </li>
+                <li>
+                  <a href="http://pinterest.com" target="_blank">{% render 'icon-pinterest' %}</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-block__details-content footer-block-image">
+              {%- if block.settings.image != blank -%}
+                {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                <div class="footer-block__image-wrapper mobile-hidden" style="max-width: min(100%, {{ block.settings.image_width }}px);">
+                  <img
+                    srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                    src="{{ block.settings.image | image_url: width: 760 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}">
+                </div>
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: "placeholder-svg placeholder" }}
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="footer__content-bottom">
+    <ul class="content-bottom__links">
+      <li>
+        <a href="#">Terms of Service</a>
+      </li>
+      <hr>
+      <li>
+        <a href="#">Privacy Policy</a>
+      </li>
+      <hr>
+      <li>
+        <a href="#">ADA Help</a>
+      </li>
+      <hr>
+      <li>
+        <a href="#">Accessibility Statement</a>
+      </li>
+      <hr>
+      <li>&copy; From You Flowers, LLC</li>
+    </ul>
+  </div>
+</footer>
+
+
+{% schema %}
+  {
+    "name": "footer",
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+        "type": "link_list",
+        "name": "Link List",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Quick links title",
+            "label": "Heading"
+          }, {
+            "type": "link_list",
+            "id": "menu",
+            "default": "footer",
+            "label": "Menu",
+            "info": "Choose which menu you want to use"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Heading",
+            "label": "Heading"
+          }, {
+            "type": "select",
+            "id": "alignment",
+            "label": "Header Alignment",
+            "options": [
+              {
+                "value": "",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          }, {
+            "type": "richtext",
+            "id": "subtext",
+            "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "label": "Subtext"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "range",
+            "id": "image_width",
+            "min": 100,
+            "max": 600,
+            "step": 5,
+            "unit": "px",
+            "label": "Image Width",
+            "default": 350
+          }, {
+            "type": "select",
+            "id": "alignment",
+            "label": "Image alignment on large screens",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          }
+        ]
+      }, {
+        "type": "contact",
+        "name": "Contact",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "range",
+            "id": "image_width",
+            "min": 100,
+            "max": 600,
+            "step": 5,
+            "unit": "px",
+            "label": "Image Width",
+            "default": 350
+          }
+        ]
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  }
+{% endschema %}

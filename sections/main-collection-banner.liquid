@@ -1,0 +1,27 @@
+{{ 'component-collection-banner.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .collection-banner {
+    background-image: url("{{ collection.metafields.custom.collection_banner | image_url }}")
+  }
+{% endstyle %}
+
+<div class="section-collection-banner page-width">
+  <div class="collection-banner">
+    <h2 class="collection-banner__heading font-heading-black">
+      {{ collection.title | escape }}
+    </h2>
+  </div>
+
+  <div class="collection-info">
+    {{ collection.description }}
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Collection Banner",
+    "settings": []
+  }
+{% endschema %}

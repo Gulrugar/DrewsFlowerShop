@@ -1,0 +1,15 @@
+{ 
+  "layout": "blank",
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

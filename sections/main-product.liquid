@@ -1,0 +1,602 @@
+<script src="{{ 'carousel.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'component-modal.js' | asset_url }}" defer="defer"></script>
+
+<script src="{{ 'reusable-form-validation.js' | asset_url }}" defer="defer"></script>
+
+
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0}}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% comment %}
+  {% assign variant_images = product.images | where: 'attached_to_variant?', true %}
+{% endcomment %}
+
+{% assign additional_images = product.images | where: 'attached_to_variant?', false %}
+
+
+<div class="main-product page-width section-{{ section.id }}-padding">
+  <div id="product-container">
+    <div class="container product-body">
+      <div class="row">
+        <div class="product-images col-lg-6">
+          <div id="product-image-carousel" class="product-image-carousel carousel slide">
+            <div id="variant-images" hidden>
+              <script type="application/json">
+                {
+                  {%- for variant in product.variants -%}
+                    "{{ variant.option1 }}": {
+                      "normal": {
+                        "src": "{{ variant.image | image_url: width: 690 | replace: '/', '\/' }}",
+                        "srcset": "{{- variant.image | image_url: width: 295 | replace: '/', '\/' }} 295w, {{- variant.image | image_url: width: 345 | replace: '/', '\/' }} 345w, {{- variant.image | image_url: width: 414 | replace: '/', '\/' }} 414w, {{- variant.image | image_url: width: 590 | replace: '/', '\/' }} 590w, {{- variant.image | image_url: width: 690 | replace: '/', '\/' }} 690w"
+                      },
+                      "thumbnail": {
+                        "src": "{{ variant.image | image_url: width: 86 | replace: '/', '\/' }}",
+                        "srcset": "{{- variant.image | image_url: width: 76 | replace: '/', '\/' }} 76w, {{- variant.image | image_url: width: 86 | replace: '/', '\/' }} 86w"
+                      }
+                    }
+                    {%- unless forloop.last -%}
+                    ,
+                    {%- endunless -%}
+                  {%- endfor -%}
+                }
+              </script>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-id="0">
+                <div class="product-listing-image">
+                  <img
+                    class="item"
+                    src="{{ product.featured_image | image_url: width: 690 }}"
+                    srcset="
+                      {{ product.featured_image | image_url: width: 295 }} 295w,
+                      {{ product.featured_image | image_url: width: 345 }} 345w,
+                      {{ product.featured_image | image_url: width: 414 }} 414w,
+                      {{ product.featured_image | image_url: width: 590 }} 590w,
+                      {{ product.featured_image | image_url: width: 690 }} 690w
+                    "
+                    sizes="
+                      (min-width: {{ settings.page_width }}px) 549px,
+                      (min-width: 990px) calc((100vw - 8rem) * 0.5 * 0.8),
+                      (min-width: 750px) 414px,
+                      (min-width: 375px) 345px,
+                      calc(100vw - 30px)
+                    "
+                  >
+                </div>
+              </div>
+              {%- for image in additional_images limit: 3 -%}
+                <div class="carousel-item" data-id="{{ forloop.index }}">
+                  <div class="product-listing-image">
+                    <img
+                      class="item"
+                      src="{{ image | image_url: width: 690 }}"
+                      srcset="
+                        {{ image | image_url: width: 295 }} 295w,
+                        {{ image | image_url: width: 345 }} 345w,
+                        {{ image | image_url: width: 414 }} 414w,
+                        {{ image | image_url: width: 590 }} 590w,
+                        {{ image | image_url: width: 690 }} 690w
+                      "
+                      sizes="
+                        (min-width: {{ settings.page_width }}px) 549px,
+                        (min-width: 990px) calc((100vw - 8rem) * 0.5 * 0.8),
+                        (min-width: 750px) 414px,
+                        (min-width: 375px) 345px,
+                        calc(100vw - 30px)
+                      "
+                    >
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+            <ol class="product-image-thumbnails carousel-indicators">
+              <li
+                class="product-image-thumbnail active"
+                data-target="#product-image-carousels"
+                data-slide-to="0"
+              >
+                <div class="product-listing-image">
+                  <img
+                    class="item"
+                    src="{{ product.featured_image | image_url: width: 86 }}"
+                    srcset="
+                      {{ image | image_url: width: 76 }} 76w,
+                      {{ image | image_url: width: 86 }} 86w
+                    "
+                    sizes="
+                      (min-width: {{ settings.page_width }}px) 86px,
+                      76px
+                    "
+                  >
+                </div>
+              </li>
+              {%- for image in additional_images limit: 3 -%}
+                <li
+                  class="product-image-thumbnail"
+                  data-target="#product-image-carousels"
+                  data-slide-to="{{ forloop.index }}"
+                >
+                  <div class="product-listing-image">
+                    <img
+                      class="item"
+                      src="{{ image | image_url: width: 86 }}"
+                      srcset="
+                        {{ image | image_url: width: 76 }} 76w,
+                        {{ image | image_url: width: 86 }} 86w
+                      "
+                      sizes="
+                        (min-width: {{ settings.page_width }}px) 86px,
+                        76px
+                      "
+                    >
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ol>
+          </div>
+        </div>
+        <div class="product-options col-lg-6">
+          <h1>{{ product.title }}</h1>
+          <span class="delivery-badge same-day">
+            <strong>Same Day</strong>
+            Delivery
+          </span>
+          
+          {% assign form_id = 'product-items-form' %}
+          {%- form 'product', product, id: form_id, novalidate: 'novalidate'-%}
+            <input type="hidden" name="id" value="{{ product.variants[1].id }}">
+            <fieldset class="form-group product-vase-fieldset js-flex-ordered js-error-container default">
+              <div class="product-selection row">
+                <legend class="col-form-label">
+                  <span class="small-hide">Select Your Options</span>
+                  <span class="medium-hide large-up-hide">{{ product.title }}</span>
+                  <!--2-->
+                </legend>
+                <!--1-->
+                <!--2-->
+                {% assign option = product.options_with_values[0] %}
+                {%- for value in option.values -%}
+                  <div class="col-4">
+                    <div class="form-check-button">
+                      <input
+                        id="product-option-{{ forloop.index0 }}"
+                        type="radio"
+                        name="{{ option.name }}"
+                        value="{{ value | escape }}"
+                        form="{{ form_id }}"
+                        {% if forloop.index0 == 1 %}
+                          checked
+                        {% endif %}
+                        data-index="item_{{ forloop.index0 }}"
+                      >
+                      <label for="product-option-{{ forloop.index0 }}">
+                        <!--1-->
+                        <span class="name">{{ value }}</span>
+                        <span class="price">
+                          {% assign optionPrice = product.variants[forloop.index0] %}
+                          <span>
+                            <s>{{ optionPrice.compare_at_price | money }}</s>
+                          </span>
+                          <b>{{ optionPrice.price | money }}</b>
+                        </span>
+                        <!--4-->
+                      </label>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+              <!--2-->
+              <!--3-->
+              <script type="application/json">
+                {{ product.variants | json }}
+              </script>
+            </fieldset>
+            <fieldset class="addons-fieldset js-flex-ordered js-error-container">
+              <div class="addons row mobile-collapsible">
+                <legend class="col-form-label">
+                  <span class="small-hide">Make It Special</span>
+                  <span class="medium-hide large-up-hide">Make Your Gift Special</span>
+                  
+                  <button class="collapse-toggler media-collapse-toggler with-plus-minus-indicator summary-count-1" type="button" data-toggle="collapse" data-target="#addon-fields" aria-expanded="false" aria-controls="addon-fields">
+                    <span class="sr-only">
+                      Click to toggle visibility of the make it special fields
+                    </span>
+                  </button>
+                </legend>
+                <div class="col-12">
+                  <p class="collapsed-summary">
+                    <span class="addon-label">Mylar Balloons</span>
+                    <span class="addon-label">Chocolate</span>
+                    <span class="addon-label">Teddy Bear</span>
+                    <span class="addon-label no-addons">No Addons</span>
+                  </p>
+                  <div id="addon-fields" class="row collapse js-collapse show">
+                    <div class="option-choose col-12 col-sm-6 col-lg-12 col-xl-6">
+                      <div class="option-choose-group">
+                        <img src="{{ 'mylar.jpg' | asset_img_url }}" alt="" width="53" height="53">
+                        <div class="info-selection-group">
+                          <div class="info">
+                            <label for="addon-m-qty">
+                              Mylar Balloons
+                              <span class="price">$5.00/each</span>
+                              <!--2-->
+                            </label>
+                          </div>
+                          <div class="selection">
+                            <select
+                              requiredpair
+                              id="addon-m-qty"
+                              class="quantity form-control formGroup"
+                              name="properties[Balloon][Quantity]"
+                            >
+                              <option value="">Qty</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                            <select
+                              requiredpair
+                              id="addon-m-opt"
+                              class="form-control formGroup"
+                              form="{{ form_id }}"
+                              name="properties[Balloon][Option]"
+                            >
+                              <option value="">Select Balloon</option>
+                              <option value="Birthday">Birthday</option>
+                              <option value="Anniversary">Anniversary</option>
+                              <option value="Congratulations">Congratulations</option>
+                              <option value="Get Well">Get Well</option>
+                              <option value="Good Luck">Good Luck</option>
+                              <option value="I Love You">I Love You</option>
+                              <option value="New Baby Boy">New Baby Boy</option>
+                              <option value="New Baby Girl">New Baby Girl</option>
+                              <option value="Thank You">Thank You</option>
+                              <option value="Thinking of You">Thinking of You</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="section-error col-12"></div>
+                      <!--2-->
+                    </div>
+                    <div class="option-choose col-12 col-sm-6 col-lg-12 col-xl-6">
+                      <div class="option-choose-group">
+                        <img src="{{ 'chocolate.jpg' | asset_img_url }}" alt="" width="53" height="53">
+                        <div class="info-selection-group">
+                          <div class="info">
+                            <label for="addon-c-opt">
+                              Chocolate
+                            </label>
+                          </div>
+                          <div class="selection">
+                            <select
+                              class="form-control"
+                              id="addon-c-opt"
+                              form="{{ form_id }}"
+                              name="properties[Chocolate]"
+                            >
+                              <option value="">Select Size</option>
+                              <option value="s">Small Box - $10.00</option>
+                              <option value="m">Medium Box - $15.00</option>
+                              <option value="l">Large Box - $20.00</option>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+                      <!--2-->
+                    </div>
+                    <div class="option-choose col-12 col-sm-6 col-lg-12 col-xl-6">
+                      <div class="option-choose-group">
+                        <img src="{{ 'bear.jpg' | asset_img_url }}" alt="" width="53" height="53">
+                        <div class="info-selection-group">
+                          <div class="info">
+                            <label for="addon-t-opt">
+                              Teddy Bear
+                            </label>
+                          </div>
+                          <div class="selection">
+                            <select
+                              class="form-control"
+                              id="addon-t-opt"
+                              form="{{ form_id }}"
+                              name="properties[Teddy Bear]"
+                            >
+                              <option value="">Select Size</option>
+                              <option value="s">Small Bear - $15.00</option>
+                              <option value="m">Medium Bear - $20.00</option>
+                              <option value="l">Large Bear - $25.00</option>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+                      <!--2-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="delivery-fieldset js-flex-ordered js-error-container">
+              <div class="delivery row">
+                <legend class="col-form-label">
+                  <span class="small-hide">Select Delivery Information</span>
+                  <span class="medium-hide large-up-hide">Delivery Information</span>
+                </legend>
+                <div class="section-error col-12"></div>
+                <div class="form-group col-md-6">
+                  <input
+                    required
+                    class="form-control formGroup"
+                    type="text"
+                    id="zip-code"
+                    form="{{ form_id }}"
+                    name="properties[Zip]"
+                    inputmode="numeric"
+                    maxlength="5"
+                    placeholder="Enter Recipient's Zip Code"
+                  >
+                  <div class="form-help">
+                    <button class="as-arrows-link" type="button" id="reselect-zip-code">
+                      Wrong delivery zip code? Type a new one
+                    </button>
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <button class="delivery-date-button btn btn-primary show" type="button">
+                    <span>Choose A Delivery Date</span>
+                  </button>
+                </div>
+                <div class="form-group col-md-6 delivery-date">
+                  <input
+                    required
+                    class="form-control"
+                    type="text"
+                    id="delivery-date"
+                    form="{{ form_id }}"
+                    name="properties[Delivery Date]"
+                    value=""
+                    readonly="readonly"
+                  >
+                  <div class="form-help">
+                    <button class="as-arrows-link" type="button" id="reselect-delivery-date">
+                      Choose a different delivery date
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="card-message-fieldset js-flex-ordered js-error-container">
+              <div class="card-message row mobile-collapsible">
+                <legend class="col-form-label">
+                  Card Message
+                  <button class="collapse-toggler media-collapse-toggler with-plus-minus-indicator summary-count-1" type="button" data-toggle="collapse" data-target="#card-message-fields" aria-expanded="false" aria-controls="card-message-fields">
+                    <span class="sr-only">
+                      Click to toggle visibility of the card message fields
+                    </span>
+                  </button>
+                </legend>
+                <div class="col-12">
+                  <p class="collapsed-summary">Blank Card</p>
+                  <div id="card-message-fields" class="row collapse js-collapse show">
+                    <div class="form-group col-12 smaller">
+                      <label for="card-type">Card Type</label>
+                      <select
+                        class="form-control"
+                        id="card-type"
+                        form="{{ form_id }}"
+                        name="properties[Card Type]"
+                      >
+                        <option value="Blank Card">Blank Card</option>
+                        <option value="No Card">No Card</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Sympathy">Sympathy</option>
+                        <option value="Funeral">Funeral</option>
+                        <option value="Get Well">Get Well</option>
+                        <option value="I Love You">I Love You</option>
+                        <option value="Just Because">Just Because</option>
+                        <option value="Women's Day">Women's Day</option>
+                        <option value="Thank You">Thank You</option>
+                        <option value="Congratulations">Congratulations</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Missing You">Missing You</option>
+                        <option value="New Baby">New Baby</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-12 smaller">
+                      <textarea
+                        customminlength="1"
+                        class="form-control formGroup formGroupBlur"
+                        id="card-message"
+                        form="{{ form_id }}"
+                        name="properties[Your Card Message]"
+                        placeholder="Your Card Message..."
+                        rows="5"
+                        maxlength="175"
+                      ></textarea>
+                      <small class="form-text">
+                        <span id="text-area-length">0</span>/ 175</small>
+                      <div class="section-error"></div>
+                    </div>
+
+                    <div class="form-group col-12 smaller">
+                      <input
+                        customminlength="1"
+                        class="form-control formGroup formGroupBlur"
+                        type="text"
+                        id="card-signature"
+                        form="{{ form_id }}"
+                        name="properties[Your Signature]"
+                        placeholder="Your Signature..."
+                        maxlength="30"
+                      >
+                      <div class="section-error"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <div class="form-actions js-flex-ordered">
+              <button class="delivery-date-button btn btn-primary show" type="button">
+                <span>Choose A Delivery Date</span>
+              </button>
+              <button class="btn btn-primary" type="submit" disabled hidden>
+                <span>Add to Cart</span>
+              </button>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+    <div class="container product-description">
+      <div class="row">
+        <div class="col">
+          <h2>
+            <button
+              class="collapse-toggler with-collapse-indicator collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#item-description-details"
+              aria-expanded="false"
+              aria-controls="item-description-details"
+            >
+              Item Description & Details
+            </button>
+          </h2>
+          <div
+            id="item-description-details"
+            class="js-collapse-section collapse rte"
+            data-disable-above="lg"
+          >
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <product-delivery-modal id="vjs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vjs-modal-title" aria-modal="true" style="padding-right: 17px;">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="vjs-modal-title" class="modal-title">Choose a Delivery Date</h3>
+            <button class="close" type="button" aria-label="Close">
+              <span aria-hidden="true">x</span>
+            </button>
+            <!--2-->
+          </div>
+          <div class="modal-body">
+            <core-availability>
+              <div id="core-availability">
+                <div class="delivery-options container-fluid">
+                  <div class="row">
+                    <!--1-->
+                    <div class="col-12 zip-code">
+                      <p>
+                        Recipient's Zip Code:
+                        <input class="form-control" id="modal-zip-code" readonly="readonly"
+                        value="">
+                      </p>
+                    </div>
+                    <div class="col-12 change-zip-code">
+                      <p>
+                        Wrong zip code?
+                        <button class="as-link" type="button" style="color: rgb(99, 93, 168);">
+                          Click here to type a new one.
+                        </button>
+                      </p>
+                    </div>
+                    <div class="col-12 first-option-cta">
+                      <p>We only offer free shipping including same day... sorry for the convenience</p>
+                      <p>
+                        <button
+                          class="as-arrows-link"
+                          value="2023-03-13"
+                          data-label="Monday, March 13"
+                          type="button"
+                          style="color: rgb(99, 93, 168);"
+                        >
+                          Available as Early as: Monday, March 13
+                        </button>
+                      </p>
+                    </div>
+                    <!--5-->
+                    <!--6-->
+                    <!--7-->
+                  </div>
+                  <div class="delivery-options-grid">
+                    <ol class="row-gutter-sm options-grid">
+                      {% comment %}30 total <li class="option col-6 col-md-4 col-lg-2">{% endcomment %}
+                    </ol>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 same-day-message">
+                      <p>
+                        Please select an available delivery date.
+                      </p>
+                    </div>
+                    <div class="future-options col-12">
+                      <p>
+                        <label for="other-delivery-dates">
+                          Looking for a future delivery date?
+                        </label>
+                        <select id="other-delivery-dates" class="form-control">
+                          {% comment %} 61 total options {% endcomment %}
+                          <option value="" selected="selected" disabled="disabled">-- future delivery date --</option>
+                        </select>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </core-availability>
+          </div>
+        </div>
+      </div>
+    </product-delivery-modal>
+  </div>
+</div>
+
+<script src="{{ 'main-product.js' | asset_url }}" defer="defer"></script>
+
+
+
+{% schema %}
+  {
+    "name": "Main Product",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 36
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,96 @@
+{{ 'component-404.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-bottom: {{ section.settings.padding_bottom}}px;
+      padding-top: {{ section.settings.padding_top}}px;
+    }
+  }
+{% endstyle %}
+
+<div class="section-{{ section.id }}-padding">
+  <h1 class="alternate">
+    <strong>Oops!</strong>
+    Page not found.
+  </h1>
+  <div class="page-width">
+    <div class="container not-found-404">
+      <div class="row-narrow content-row">
+        <div class="image col-lg-4">
+          {%- if section.settings.image != blank -%}
+            <img
+              src="{{ section.settings.image | image_url: width: 865}}"
+              srcset="
+              {{ section.settings.image | image_url: width:338 }} 338w,
+              {{ section.settings.image | image_url: width:438 }} 438w,
+              {{ section.settings.image | image_url: width:545 }} 545w,
+              {{ section.settings.image | image_url: width:737 }} 737w,
+              {{ section.settings.image | image_url: width:865 }} 865w"
+              sizes="(min-width: 1500px) 438px, (min-width: 1200px) 338px, (min-width: 992px) 865px, (min-width: 768px) 737px, 545px"
+              width="865"
+              height="853"
+              alt="Page Not Found"
+            >
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+          {%- endif -%}
+        </div>
+        <div class="content col-lg-8 rte">
+          {%- if section.settings.content != blank -%}
+            {{ section.settings.content }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "404",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "default": "<p>Default content for the 404 page</p>",
+        "label": "Content"
+      },
+      {
+        "type": "header",
+        "content": "Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "default": 36,
+        "label": "Padding top"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "default": 36,
+        "label": "Padding bottom"
+      }
+    ]
+  }
+{% endschema %}

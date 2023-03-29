@@ -1,0 +1,144 @@
+/* 1 */
+.slideshow__slide {
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2 */
+slideshow-component {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 14 */
+slideshow-component .slideshow.banner {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+  gap: 0;
+  
+}
+
+/* 41 */
+.slideshow__text.banner__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 54.5rem;
+}
+
+/* 48 */
+.slideshow__text>* {
+  max-width: 100%;
+}
+
+.slideshow:not(.banner--mobile-bottom) .slideshow__text-wrapper {
+  height: 100%;
+}
+
+/* 103 */
+@media screen and (min-width: 750px) {
+  .slideshow__text-wrapper.banner__content {
+    height: 100%;
+    padding: 5rem;
+  }
+}
+
+/* 109 */
+.slideshow__controls {
+  border: 0.1rem solid rgba(var(--color-base-accent-2), .08);
+  background-color: rgb(var(--color-base-accent-2));
+}
+
+/* 113 */
+.slideshow__controls--top {
+  order: 2;
+  z-index: 1;
+}
+
+/* 130 */
+@media screen and (min-width: 750px) {
+  .slideshow__controls {
+    position: relative;
+  }
+}
+
+/* 135 */
+slideshow-component:not(.page-width) .slider-buttons {
+  border-right: 0;
+  border-left: 0;
+}
+
+/* 140 */
+.slideshow__control-wrapper {
+  display: flex;
+}
+
+/* 144 */
+.slideshow__autoplay {
+  position: absolute;
+  right: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .slideshow__autoplay.slider-button {
+    position: inherit;
+    margin-left: 0.6rem;
+    padding: 0 0 0 0.6rem;
+    border-left: 0.1rem solid rgba(255, 255, 255, .08)
+  }
+}
+
+/* 169 */
+.slideshow__autoplay .icon.icon-play,
+.slideshow__autoplay .icon.icon-pause {
+  display: block;
+  position: absolute;
+  opacity: 1;
+  transform: scale(1);
+  transition: transform .15s ease, opacity .15s ease;
+  width: 0.8rem;
+  height: 1.2rem;
+}
+
+/* 179 */
+.slideshow__autoplay .icon.icon-play {
+  height: 1rem;
+}
+
+/* 203 */
+.slideshow__autoplay--paused .icon-pause,
+.slideshow__autoplay:not(.slideshow__autoplay--paused) .icon-play {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(.8)
+}
+
+/* My Addition */
+.banner__heading,
+.banner__text {
+  background-color: black;
+  color: white;
+}
+
+.banner__heading {
+  padding: 0.5rem 2.5rem;
+  font-weight: normal;
+}
+
+.banner__heading,
+.banner__buttons a {
+  min-width: 32rem;
+  transition: all var(--duration-long) ease;
+}
+
+.banner__buttons .button::after {
+  content: '\00A0\00BB';
+}
+
+.banner__buttons a {
+  height: 100%;
+}

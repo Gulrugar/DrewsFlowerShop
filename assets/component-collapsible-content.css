@@ -1,0 +1,9 @@
+.collapsible-content {
+  margin-bottom: 2rem;
+}
+
+.collapsible-content .product-info h2 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0;
+}

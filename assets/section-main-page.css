@@ -1,0 +1,27 @@
+/* h1.alternate */
+h1.alternate {
+  font-size: 3.75rem;
+  text-align: center;
+  padding: .625rem 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 990px) {
+  h1.alternate {
+    font-size: 4.75rem;
+  }
+}
+
+/* div.container.static-page */
+.static-page {
+  padding-bottom: 1rem;
+}
+
+/* div.row-narrow */
+@media screen and (min-width: 990px) {
+  .container .row-narrow {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}

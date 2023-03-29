@@ -1,0 +1,72 @@
+{{ 'component-collapsible-content.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+<div class="collapsible-content page-width">
+  <div class="container product-info">
+    {%- for block in section.blocks -%}
+      <div class="row">
+        <div class="col">
+          <h2>
+            <button
+              class="collapse-toggler with-collapse-indicator collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapsible-content-{{ forloop.index0 }}"
+              aria-expanded="false"
+              aria-controls="item-description-details"
+            >
+              {{ block.settings.heading }}
+            </button>
+          </h2>
+          <div
+            id="collapsible-content-{{ forloop.index0 }}"
+            class="js-collapse-section collapse rte"
+            data-disable-above="lg"
+          >
+            {{ block.settings.row_content }}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collapsible Content",
+    "blocks": [
+      {
+        "type": "collapsible_row",
+        "name": "Collapsible row",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Collapsible row",
+            "label": "Heading"
+
+          },
+          {
+            "type": "richtext",
+            "id": "row_content",
+            "label": "Row content",
+            "default": "<p>This is the row content</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collapsible content",
+        "blocks": [
+          {
+            "type": "collapsible_row"
+          },
+          {
+            "type": "collapsible_row"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

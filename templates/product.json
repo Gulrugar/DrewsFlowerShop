@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "padding_top": 36
+      }
+    },
+    "f083d823-a292-44b1-9359-112fbde4e571": {
+      "type": "collapsible-content",
+      "blocks": {
+        "template--18036283998488__f083d823-a292-44b1-9359-112fbde4e571-16783306381306bb0f-0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Shipping Information",
+            "row_content": "<p>Same Day Flower Delivery is available in the USA from our network of  local florist partners. Orders for flower delivery today must be placed by 3pm in the delivery zip code. Next day delivery options or dates in the future are also available. Cut off time for delivery same day varies on weekends and during peak holidays.<br\/><br\/>In order to ensure you receive the freshest product possible, we will make every attempt to deliver the specified product. In some cases our florists may need to substitute a similar container or flowers.         <br\/> <br\/>From You Flowers works hard to maintain a network of reliable florists nationwide, but sometimes delivery issues cannot be avoided. We want you to know that From You Flowers stands behind our 100% satisfaction guarantee and, if you are not satisfied with the timing of your delivery, you should contact us.<br\/><br\/>If one of our florists lets us know that your selected delivery time and\/or date cannot or will not be met, we will contact you as soon as possible to inform you of the situation. From You Flowers will then attempt to deliver your order as soon as possible, unless you promptly let us know that you would like to cancel your order instead. Also, if you paid extra for an expedited delivery feature and your selected delivery time and\/or date cannot be met, From You Flowers will automatically refund your expedited delivery fee.<\/p><p><br\/>If you do not receive a delivery confirmation email within 24 hours of your selected delivery date and time, please let us know so that we can follow up on your order.<br\/><br\/>We will issue you a full refund upon your request or agree on some other resolution to your delivery issue that is satisfactory to you, unless we can establish that your order was received by your selected delivery date and time, or the order was untimely due to some fault of you or the recipient of the order (for example, an incorrect delivery address was provided, there was no one at the delivery address to accept the order, or the person at the delivery address refused delivery).<\/p>"
+          }
+        },
+        "template--18036283998488__f083d823-a292-44b1-9359-112fbde4e571-16783306381306bb0f-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Delivery\/Substitution Policy",
+            "row_content": "<p>Substitutions may be necessary to ensure your arrangement or specialty gift is delivered in a timely manner and depending on availability.<br\/><br\/><\/p><h3>Substitution Policy<\/h3><p>Substitutions may be necessay to ensure your arrangement is delivered in a timely manner. The utmost care and attention is given to your order to ensure that it is as similar as possible to the requested item.<br\/><br\/><\/p><h3>Flowers<\/h3><ul><li>In arrangements of assorted flowers, the colors shown online will be used if at all possible, even if this means substituting other kinds of flowers of equal or greateer value.<\/li><li>For one-of-a-kind flower arrangements, such as all roses or all lillies, we will make every attempt to match the flower type, but may substittue with another color. <\/li><li>If the floral container shown online is not available, a similar container will be used.<\/li><\/ul><p><br\/><\/p><h3>Plants<\/h3><ul><li>For green and blooming plants, similar plants may be substituted of equal or greater value.<\/li><li>For one-of-a-kind plants, such as orchids, we will make every attempt to match plant type, buy may substitute with another color.<\/li><li>If the plant container online is not available, a similar container will be used.<\/li><\/ul><p><br\/><\/p><h3>Specialty Gifts<\/h3><ul><li>Specialty gifts may be substituted with another gift of equal or greater value and of similar theme and category.<\/li><\/ul>"
+          }
+        }
+      },
+      "block_order": [
+        "template--18036283998488__f083d823-a292-44b1-9359-112fbde4e571-16783306381306bb0f-0",
+        "template--18036283998488__f083d823-a292-44b1-9359-112fbde4e571-16783306381306bb0f-1"
+      ],
+      "settings": {
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You May Also Like",
+        "products_to_show": 8,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "f083d823-a292-44b1-9359-112fbde4e571",
+    "related-products"
+  ]
+}

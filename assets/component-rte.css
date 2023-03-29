@@ -1,0 +1,13 @@
+.rte ul {
+  list-style: circle;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.rte h3 {
+  font-size: 2rem;
+}
+
+.rte p {
+  margin-bottom: 1rem;
+}

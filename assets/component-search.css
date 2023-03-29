@@ -1,0 +1,67 @@
+/* 1 */
+.search__input.field__input {
+  padding-right: 9.8rem;
+}
+
+/* 5 */
+.search__button {
+  right: 1px;
+  top: 1px;
+}
+
+/* 10 */
+.reset__button {
+  right: calc(1px + 4.4rem);
+  top: 1px;
+}
+
+/* 15 */
+.reset__button:not(:focus-visible)::after {
+  border-right: .2rem solid rgba(255, 255, 255,.08);
+  display: block;
+  height: calc(100% - 1.6rem);
+  content: "";
+  position: absolute;
+  right: 0;
+}
+
+/* 24 */
+.reset__button:not(:focus)::after {
+  border-right: .2rem solid rgba(255, 255, 255,.08);
+  display: block;
+  height: calc(100% - 1.8rem);
+  content: "";
+  position: absolute;
+  right: 0;
+}
+
+/* 45 */
+.search__button:not(:focus-visible):not(.focused),
+.reset__button:not(:focus-visible):not(.focused) {
+  box-shadow: inherit;
+  background-color: inherit;
+}
+
+/* 51 */
+.search__button:hover .icon,
+.reset__button:hover .icon {
+  transform: scale(1.07);
+}
+
+/* 57 */
+.search__button .icon {
+  height: 1.8rem;
+  width: 1.8rem;
+
+  fill: none;
+  stroke: #212121;
+}
+
+/* 62 */
+.reset__button .icon.icon-close {
+  height: 1.8rem;
+  width: 1.8rem;
+  stroke-width: .1rem;
+
+  color: #212121;
+}

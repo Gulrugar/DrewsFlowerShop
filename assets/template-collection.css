@@ -1,0 +1,27 @@
+.product-listings {
+  padding: 0 1rem 2rem
+}
+
+/* related links */
+.related-links {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.related-links a {
+  display: inline-block;
+  color: #fff;
+  padding: 1.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+
+  min-width: 100px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.related-links a:hover {
+  text-decoration: underline;
+}

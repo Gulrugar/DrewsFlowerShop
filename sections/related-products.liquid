@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="{{ 'section-related-products.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding page-width">
+  <div class="container additional-product-section">
+    <product-recommendations data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}">
+      {% if recommendations.performed and recommendations.products_count > 0 %}
+        <h3 class="section-title">{{ section.settings.heading }}</h3>
+        <div class="row additional-products similiar js-related-section">
+          {% for recommendation in recommendations.products %}
+            <div class="col-3 col-lg additional-product js-additional-product-listing">
+              <a href="{{ recommendation.url }}">
+                <img
+                  src="{{ recommendation.featured_image | image_url: width: 414 }}"
+                  sizes="
+                      (min-width: 1500px) 129px,
+                      (min-width: 1200px) calc((100vw - (20 * 0.3495rem) - (2 * 15px) - 4rem) * 0.1),
+                      (min-width: 992px) calc((100vw - (22 * 15px)) * 0.1), 
+                      (min-width: 768px) calc((100vw - (10 * 15px)) * 0.25), 
+                      calc((100vw - (8 * 15px)) * 0.25)
+                    "
+                  alt="{{ recommendation.featured_image.alt }}"
+                  srcset="
+                    {{ recommendation.featured_image | image_url: width: 76 }} 76w, 
+                    {{ recommendation.featured_image | image_url: width: 158 }} 158w, 
+                    {{ recommendation.featured_image | image_url: width: 295 }} 295w, 
+                    {{ recommendation.featured_image | image_url: width: 414 }} 414w
+                  "
+                  width="414"
+                  height="{{ 414 | divided_by: recommendation.featured_image.aspect_ratio | ceil }}"
+                >
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </product-recommendations>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Related products",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "default": "You may also like",
+        "label": "Heading"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "default": 4,
+        "label": "Products to show"
+      },
+      {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "type": "header",
+        "content": "Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 36
+      }
+    ]
+  }
+  {% endschema %}

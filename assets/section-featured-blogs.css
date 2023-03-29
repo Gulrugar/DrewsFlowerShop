@@ -1,0 +1,61 @@
+/* div.container.blog */
+.blog {
+  padding-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* h3.section-title */
+.blog .section-title {
+  color: #212121;
+}
+
+/* div.row.blog-posts */
+
+@media (min-width: 750px) {
+  .blog .blog-posts, .blog .magazine-intro {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* div.col-6.col-md.blog-post */
+.blog-post {
+  text-align: center;
+}
+
+/* a */
+
+.blog a {
+  font-weight: bold;
+}
+
+/* div.image.bg-loaded */
+.blog-post .image.bg-loaded {
+  background-size: cover;
+}
+
+.blog-post .image {
+  background-position: center;
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* div.image.bg-loaded::before */
+.blog-post .image::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+/* p.title */
+.blog-post .title {
+  padding-top: 1rem;
+}
+
+/* p.title::after */
+.blog-post .title::after {
+  content: '\00A0\00BB';
+}

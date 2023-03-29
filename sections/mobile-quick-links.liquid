@@ -1,0 +1,57 @@
+{{ 'component-mobile-quick-links.css' | asset_url | stylesheet_tag }}
+
+
+<div class="mobile-quick-links desktop-hidden">
+  <div class="mobile-quick-links__row">
+    <div class="icons-link">
+      <a href="#">
+        <img src="{{ 'mobile-home-1.png' | asset_img_url }}" alt="">
+        <span>Valentine's Day</span>
+      </a>
+    </div>
+    <div class="icons-link">
+      <a href="#">
+        <img src="{{ 'mobile-home-2.png' | asset_img_url }}" alt="">
+        <span>Same Day</span>
+      </a>
+    </div>
+    <div class="icons-link">
+      <a href="/collections/birthday-flowers">
+        <img src="{{ 'mobile-home-3.png' | asset_img_url }}" alt="">
+        <span>Birthday</span>
+      </a>
+    </div>
+    <div class="icons-link">
+      <a href="#">
+        <img src="{{ 'mobile-home-4.png' | asset_img_url }}" alt="">
+        <span>Sympathy</span>
+      </a>
+    </div>
+    <div class="icons-link">
+      <a href="#">
+        <img src="{{ 'mobile-home-5.png' | asset_img_url }}" alt="">
+        <span>Love & Romance</span>
+      </a>
+    </div>
+    <div class="icons-link">
+      <a href="#">
+        <img src="{{ 'mobile-home-6.png' | asset_img_url }}" alt="">
+        <span>Gift Baskets</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Mobile Quick Links",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "presets": [
+      {
+        "name": "Mobile Quick Links"
+      }
+    ]
+  }
+{% endschema %}
