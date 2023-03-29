@@ -187,6 +187,7 @@
         "column-0": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/52-526237_avatar-profile-hd-png-download.png",
             "text": "<p>Beautiful flowers delivered same day reasonably priced. Will be a returning customer!<\/p>",
             "author": "Jon Doe",
             "author_location": "Fake Lakes, Utah"
@@ -195,6 +196,7 @@
         "column-1": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/81408-middle.png",
             "text": "<p>Flower were fresh and arranged exactly as ordered. Very impressed with the quality. Wife loved them.<\/p>",
             "author": "Tammy",
             "author_location": "New York, New York"
@@ -203,6 +205,7 @@
         "column-2": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/portrait.png",
             "text": "<p>The flowers were sent to my mother for her birthday and she loved them. She loved the way they were arranged and the quality of the flowers. I am ordering more today for my mother-in-law!<\/p>",
             "author": "Debra",
             "author_location": "Los Angeles, California"
