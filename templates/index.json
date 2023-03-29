@@ -24,6 +24,7 @@
         "slide-2": {
           "type": "slide",
           "settings": {
+            "image": "shopify:\/\/shop_images\/slide-3.webp",
             "heading": "Say I Love You",
             "button_label": "Shop Love & Romance",
             "link": "https:\/\/youtube.com"
@@ -32,6 +33,7 @@
         "9bab01eb-8847-4bce-8ad6-bcd81c920c23": {
           "type": "slide",
           "settings": {
+            "image": "shopify:\/\/shop_images\/slide-4.webp",
             "heading": "Send Your Love",
             "button_label": "Shop Sympathy Flowers",
             "link": ""
@@ -82,6 +84,7 @@
         "hero-image-0": {
           "type": "hero-image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/home-span-54.webp"
           }
         }
       },
