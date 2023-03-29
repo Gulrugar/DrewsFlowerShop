@@ -126,6 +126,7 @@
         "template--17896198078744__6bb8d24c-c9e5-48d6-8542-f7a3881e5e23-167761421144b5216a-1": {
           "type": "hero-image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/home-span-9.webp"
           }
         }
       },
@@ -167,6 +168,7 @@
         "template--17896198078744__8f8dda2e-7be4-41a6-9100-a700c6ef81be-167761421144b5216a-1": {
           "type": "hero-image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/home-span-27.webp"
           }
         }
       },
