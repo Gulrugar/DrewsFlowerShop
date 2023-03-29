@@ -87,8 +87,6 @@ const validateForm = (formSelector) => {
         }
       }
 
-      console.log(`formGroup: ${formGroup}, formGroupErrors: ${formGroupErrors}`)
-
       if (!formGroupError) {
         errorContainer.innerHTML = ''
         formGroup.classList.remove('border-red')

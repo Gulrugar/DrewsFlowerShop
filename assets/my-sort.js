@@ -1,6 +1,5 @@
 class FacetFiltersForm extends HTMLElement {
   constructor() {
-    console.log('constructor()')
     super();
 
     this.debouncedOnSubmit = debounce((event) => {
@@ -26,7 +25,6 @@ class FacetFiltersForm extends HTMLElement {
 
     sections.forEach((section) => {
       const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
-      console.log(url)
       const filterDataUrl = element => element.url === url;
 
       FacetFiltersForm.filterData.some(filterDataUrl) ?
@@ -42,7 +40,6 @@ class FacetFiltersForm extends HTMLElement {
       .then(response => response.text())
       .then((responseText) => {
         const html = responseText;
-        console.log(html)
         FacetFiltersForm.filterData = [...FacetFiltersForm.filterData, { html, url }];
         FacetFiltersForm.renderProductGridContainer(html);
       });
@@ -70,18 +67,15 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   createSearchParams(form) {
-    console.log('createSearchParams')
     const formData = new FormData(form);
     return new URLSearchParams(formData).toString();
   }
 
   onSubmitForm(searchParams, event) {
-    console.log('onSubmitForm')
     FacetFiltersForm.renderPage(searchParams, event);
   }
 
   onSubmitHandler(event) {
-    console.log('onSubmitHandler')
     event.preventDefault();
     const form = document.querySelector('facet-filters-form form');
 

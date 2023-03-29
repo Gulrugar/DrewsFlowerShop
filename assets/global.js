@@ -670,18 +670,9 @@ class QuantityInput extends HTMLElement {
     )
   }
 
-  // quantityUpdateUnsubscriber = undefined
-
   connectedCallback() {
     this.validateQtyRules();
-    // this.quantityUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.quantityUpdate, this.validateQtyRules.bind(this))
-  }
 
-  disconnectedCallback() {
-    // if (this.quantityUpdateUnsubscriber) {
-    //   this.quantityUpdateUnsubscriber();
-    // }
-    console.log('quantity-input disconnected')
   }
 
   onInputChange(event) {
@@ -715,16 +706,13 @@ customElements.define('quantity-input', QuantityInput);
 
 class ProductRecommendations extends HTMLElement {
   constructor() {
-    console.log('ProductRecommendations I am created')
     super();
   }
 
   connectedCallback() {
     const handleIntersection = (entries, observer) => {
-      console.log('this is working')
       if (!entries[0].isIntersecting) return;
       observer.unobserve(this);
-      console.log('this is still working')
 
       fetch(this.dataset.url)
         .then(response => response.text())

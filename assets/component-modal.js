@@ -163,7 +163,6 @@ class CartDeliveryModal extends ProductDeliveryModal {
   updateDeliveryDate(deliveryBtnOrOption, event = 'click') {
     deliveryBtnOrOption.addEventListener(event, (e) => {
       const cartItem = document.getElementById(`CartItem-${this.line}`)
-      console.log(deliveryBtnOrOption.value)
       const newDeliveryDate = new Date(deliveryBtnOrOption.value).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: '2-digit' });
   
       

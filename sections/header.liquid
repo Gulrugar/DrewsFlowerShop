@@ -234,7 +234,6 @@
     }
 
     createObserver() {
-      console.log('in createObserver')
       let observer = new IntersectionObserver((entries, observer) => {
         this.headerBounds = entries[0].intersectionRect;
         observer.disconnect();
@@ -290,14 +289,6 @@
       if (this.headerIsAlwaysSticky) return;
       this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate')
     }
-
-    // closeMenuDisclosure() {
-    //   console.log('function logic')
-    // }
-
-    // closeSearchModal() {
-    //   console.log('function logic')
-    // }
   }
 
   customElements.define('sticky-header', StickyHeader);

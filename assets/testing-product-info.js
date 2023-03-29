@@ -13,18 +13,8 @@ if (!customElements.get('product-info')) {
       }
     }
 
-    // cartUpdateUnsubscriber = undefined;
-
     connectedCallback() {
       this.setQuantityBoundaries();
-      //this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, this.fetchCartQty.bind(this));
-    }
-
-    disconnectedCallback() {
-      // if (this.cartUpdateUnsubscriber) {
-      //   this.cartUpdateUnsubscriber();
-      // }
-      console.log('<product-info> disconnected')
     }
 
     setQuantityBoundaries() {

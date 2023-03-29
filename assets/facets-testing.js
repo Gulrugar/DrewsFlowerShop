@@ -1,6 +1,5 @@
 class FacetFiltersForm extends HTMLElement {
   constructor() {
-    console.log('constructor()')
     super();
     this.onActiveFilterClick = this.onActiveFilterClick.bind(this);
 
@@ -16,7 +15,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static setListeners() {
-    console.log('static setListeners')
     const onHistoryChange = (event) => {
       const searchParams = event.state ? event.state.searchParams : FacetFiltersForm.searchParamsInitial;
       if (searchParams === FacetFiltersForm.searchParamsPrev) return;
@@ -26,14 +24,12 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static toggleActiveFacets(disable = true) {
-    console.log('static toggleActiveFacets')
     document.querySelectorAll('.js-facet-remove').forEach((element) => {
       element.classList.toggle('disabled', disable);
     });
   }
 
   static renderPage(searchParams, event, updateURLHash = true) {
-    console.log('static renderPage')
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
     const countContainer = document.getElementById('ProductCount');
@@ -59,7 +55,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderSectionFromFetch(url, event) {
-    console.log('static renderSectionFromFetch')
     fetch(url)
       .then(response => response.text())
       .then((responseText) => {
@@ -72,7 +67,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderSectionFromCache(filterDataUrl, event) {
-    console.log('static renderSectionFromCache')
     const html = FacetFiltersForm.filterData.find(filterDataUrl).html;
     FacetFiltersForm.renderFilters(html, event);
     FacetFiltersForm.renderProductGridContainer(html);
@@ -80,12 +74,10 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderProductGridContainer(html) {
-    console.log('static renderProductGridContainer')
     document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
   }
 
   static renderProductCount(html) {
-    console.log('static renderProductCount')
     const count = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductCount').innerHTML
     const container = document.getElementById('ProductCount');
     const containerDesktop = document.getElementById('ProductCountDesktop');
@@ -98,7 +90,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderFilters(html, event) {
-    console.log('static renderFilters')
     const parsedHTML = new DOMParser().parseFromString(html, 'text/html');
 
     const facetDetailsElements =
@@ -121,7 +112,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderActiveFacets(html) {
-    console.log('static renderActiveFacets')
     const activeFacetElementSelectors = ['.active-facets-mobile', '.active-facets-desktop'];
 
     activeFacetElementSelectors.forEach((selector) => {
@@ -134,7 +124,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderAdditionalElements(html) {
-    console.log('static renderAdditionalElements')
     const mobileElementSelectors = ['.mobile-facets__open', '.mobile-facets__count', '.sorting'];
 
     mobileElementSelectors.forEach((selector) => {
@@ -147,7 +136,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderCounts(source, target) {
-    console.log('static renderCounts')
     const targetElement = target.querySelector('.facets__selected');
     const sourceElement = source.querySelector('.facets__selected');
 
@@ -164,12 +152,10 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static updateURLHash(searchParams) {
-    console.log('static updateURLHash')
     history.pushState({ searchParams }, '', `${window.location.pathname}${searchParams && '?'.concat(searchParams)}`);
   }
 
   static getSections() {
-    console.log('static getSections')
     return [
       {
         section: document.getElementById('product-grid').dataset.id,
@@ -178,18 +164,15 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   createSearchParams(form) {
-    console.log('createSearchParams')
     const formData = new FormData(form);
     return new URLSearchParams(formData).toString();
   }
 
   onSubmitForm(searchParams, event) {
-    console.log('onSubmitForm')
     FacetFiltersForm.renderPage(searchParams, event);
   }
 
   onSubmitHandler(event) {
-    console.log('onSubmitHandler')
     event.preventDefault();
     const sortFilterForms = document.querySelectorAll('facet-filters-form form');
     if (event.srcElement.className == 'mobile-facets__checkbox') {
@@ -215,7 +198,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   onActiveFilterClick(event) {
-    console.log('onActiveFilterClick')
     event.preventDefault();
     FacetFiltersForm.toggleActiveFacets();
     const url = event.currentTarget.href.indexOf('?') == -1 ? '' : event.currentTarget.href.slice(event.currentTarget.href.indexOf('?') + 1);

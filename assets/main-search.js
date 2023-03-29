@@ -1,6 +1,5 @@
 class MainSearch extends SearchForm {
   constructor() {
-    console.log('main-search i am created')
     super();
     this.allSearchInputs = document.querySelectorAll('input[type="search"]')
     this.setupEventListeners();
