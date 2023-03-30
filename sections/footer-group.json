@@ -25,14 +25,14 @@
           "type": "link_list",
           "settings": {
             "heading": "About Us",
-            "menu": "footer"
+            "menu": "about-us"
           }
         },
         "footer-3": {
           "type": "link_list",
           "settings": {
             "heading": "My Account",
-            "menu": "footer"
+            "menu": "my-account"
           }
         },
         "footer-4": {
