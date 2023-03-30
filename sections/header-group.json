@@ -19,8 +19,8 @@
           "settings": {
             "text": "Order Now & Save!",
             "text_alignment": "center",
-            "link_text": "View all Easter Flowers",
-            "link": "#"
+            "link_text": "View all Get Well Flowers",
+            "link": "shopify:\/\/collections\/get-well"
           }
         }
       },
@@ -34,6 +34,9 @@
     "header": {
       "type": "header",
       "settings": {
+        "color_scheme": "accent-2",
+        "menu": "main-menu",
+        "sticky_header_type": "none"
       }
     }
   },
