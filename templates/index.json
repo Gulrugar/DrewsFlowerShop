@@ -142,8 +142,8 @@
     "fd0c8482-8a1b-41b2-803f-47dde83ac6d2": {
       "type": "featured_collection",
       "settings": {
-        "title": "Featured Birthday Flowers",
-        "collection": "birthday",
+        "title": "Featured Housewarming Flowers",
+        "collection": "housewarming",
         "products_to_show": 4,
         "columns_desktop": 4,
         "show_view_all": true,
