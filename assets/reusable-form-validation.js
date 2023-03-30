@@ -1,3 +1,5 @@
+// #product-items-form fieldset.js-error-container .section-error
+
 const validateForm = (formSelector) => {
   const formElement = document.querySelector(formSelector)
 
