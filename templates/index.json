@@ -50,11 +50,6 @@
         "change_slides_speed": 5
       }
     },
-    "1d901b79-9a86-4a39-9735-12035f029e70": {
-      "type": "mobile-quick-links",
-      "settings": {
-      }
-    },
     "featured_collection": {
       "type": "featured_collection",
       "settings": {
@@ -272,7 +267,6 @@
   },
   "order": [
     "slideshow",
-    "1d901b79-9a86-4a39-9735-12035f029e70",
     "featured_collection",
     "hero_banner",
     "c269b801-851e-46e7-b3c8-bc8b9d75b92a",
