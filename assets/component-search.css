@@ -65,3 +65,9 @@
 
   color: #212121;
 }
+
+/* my styles */
+.template-search__search input {
+  border: 1px solid rgb(var(--color-base-accent-2));
+  background-color: rgba(0, 0, 0, 0.1);
+}

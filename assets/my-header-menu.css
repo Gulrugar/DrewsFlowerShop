@@ -322,6 +322,11 @@
   display: block;
   line-height: var(--height-menu-item);
   text-decoration: none;
+  transition: background-color .2s ease;
+}
+
+.navbar__link a:hover {
+  background-color: #ffe7f3;
 }
 
 .list__content {
