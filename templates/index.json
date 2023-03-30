@@ -9,7 +9,7 @@
             "image": "shopify:\/\/shop_images\/slide-1.webp",
             "heading": "Birthday Blooms",
             "button_label": "Shop All Birthday Flowers",
-            "link": "https:\/\/youtube.com"
+            "link": "shopify:\/\/collections\/birthday"
           }
         },
         "slide-1": {
@@ -27,7 +27,7 @@
             "image": "shopify:\/\/shop_images\/slide-3.webp",
             "heading": "Say I Love You",
             "button_label": "Shop Love & Romance",
-            "link": "https:\/\/youtube.com"
+            "link": "shopify:\/\/collections\/love-romance"
           }
         },
         "9bab01eb-8847-4bce-8ad6-bcd81c920c23": {
