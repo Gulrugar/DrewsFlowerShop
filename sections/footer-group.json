@@ -31,7 +31,7 @@
         "footer-3": {
           "type": "link_list",
           "settings": {
-            "heading": "My Account",
+            "heading": "Help",
             "menu": "my-account"
           }
         },
