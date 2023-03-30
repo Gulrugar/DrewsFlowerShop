@@ -79,7 +79,7 @@
       {% endcomment %}
       {%- for other_collection in collections -%}
         {%- unless other_collection.title == collection.title -%}
-          <a href="#" class="color-accent-2">{{ other_collection.title }}</a>
+          <a href="{{ other_collection.url }}" class="color-accent-2">{{ other_collection.title }}</a>
         {%- endunless -%}
       {%- endfor -%}
     </div>
