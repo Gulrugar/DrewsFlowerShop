@@ -38,15 +38,15 @@
         "footer-4": {
           "type": "link_list",
           "settings": {
-            "heading": "Help",
-            "menu": ""
+            "heading": "Occasions",
+            "menu": "occasions"
           }
         },
         "footer-5": {
           "type": "link_list",
           "settings": {
-            "heading": "Occasions and Discounts",
-            "menu": "footer"
+            "heading": "Sentiments",
+            "menu": "sentiments"
           }
         },
         "footer-6": {
