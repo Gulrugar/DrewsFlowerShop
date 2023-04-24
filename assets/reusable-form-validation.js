@@ -98,7 +98,20 @@ const validateForm = (formSelector) => {
         }
         if (formGroup.id == 'addon-m-qty' || formGroup.id == 'addon-m-opt') {
           const addonRect = formGroup.closest('fieldset').getBoundingClientRect();
-          if (addonRect.top <= 0) formGroup.closest('fieldset').scrollIntoView()
+          if (addonRect.top <= 0) formGroup.closest('fieldset').scrollIntoView();
+        }
+
+        let alreadyScrolled = false;
+        if (formGroup.id != 'zip-code' ) {
+          const toggler = formGroup.closest('fieldset').querySelector('.collapse-toggler');
+          toggler.setAttribute('aria-expanded', 'true');
+          document.querySelector(toggler.dataset.target).classList.add('show');
+
+          if (!alreadyScrolled) {
+            formGroup.closest('fieldset').scrollIntoView();
+            alreadyScrolled = true;
+          }
+          
         }
       }
 
