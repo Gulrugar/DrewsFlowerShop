@@ -77,7 +77,7 @@ variantPicker.addEventListener('change', function() {
   const variantData = JSON.parse(this.querySelector('[type="application/json"]').textContent)
   const selectedVariant = variantData.find((variant) => variant.option1 == option)
   if (!selectedVariant) return;
-  const form_input = document.querySelector('#{{ form_id }}').querySelector('input[name="id"]')
+  const form_input = document.getElementById('product-items-form').querySelector('input[name="id"]')
   form_input.value = selectedVariant.id
 })
 
