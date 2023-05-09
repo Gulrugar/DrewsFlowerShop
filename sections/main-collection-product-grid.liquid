@@ -88,17 +88,13 @@
 
   {%- unless collection.metafields.custom.collection_rich_text == blank -%}
     {{ 'component-rich-text.css' | asset_url | stylesheet_tag }}
-  {%- endunless -%}
 
-
-
-  <div class="rich-text">
-    <div class="rich-text__content">
-      {{ collection.metafields.custom.collection_rich_text | metafield_tag }}
+    <div class="rich-text">
+      <div class="rich-text__content">
+        {{ collection.metafields.custom.collection_rich_text | metafield_tag }}
+      </div>
     </div>
-  </div>
-
-
+  {%- endunless -%}
 
 </div>
 
