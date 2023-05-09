@@ -23,6 +23,12 @@ class ProductDeliveryModal extends HTMLElement {
   createButtonsAndInputs() {
     let dateToday = new Date()
 
+    const firstOptionCtaBtn = document.querySelector('.first-option-cta button')
+    firstOptionCtaBtn.value = dateToday.toISOString();
+    firstOptionCtaBtn.textContent = `Available as Early as: ${dateToday.toLocaleString('en-us', {  weekday: 'long', month: 'long', day: '2-digit' })}`
+    this.updateDeliveryDate(firstOptionCtaBtn, 'click')
+
+
     // Buttons
     for (let i=0; i < 30; i++) {
       const listEl = new DOMParser().parseFromString(
@@ -64,6 +70,8 @@ class ProductDeliveryModal extends HTMLElement {
 
   wireButtonsAndInputs() {
     // button click / close modal
+
+
     Array.from(this.dateButtonContainer.querySelectorAll('li button')).forEach((deliveryBtn) => {
       this.updateDeliveryDate(deliveryBtn, 'click')
     })
