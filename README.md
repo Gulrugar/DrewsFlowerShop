@@ -1,6 +1,12 @@
 # Drew's Flower Shop
 
-[Link to Store =>](http://www.traversymedia.com "Drew's Flower Shop")
+[Homepage](#home-page) |
+[Collection Page](#collection-page) |
+[Product Page](#product-page) |
+[Cart Page](#cart-page) |
+[Other Pages](#other-pages)
+
+[Go to Store =>](http://www.traversymedia.com "Drew's Flower Shop")
 
 <span style="text-decoration: underline">Store Password: staylt</span>
 
@@ -30,10 +36,10 @@ You'll also find a featured blog section that links to articles in a fully imple
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236962987-d72eb061-6544-4219-8b18-af936d7d3236.png"/>
 </div>
 
-### Collections Page
+### Collection Page
 
-The collections page features filtering that caches to avoid unnessary api calls and improve performance. Larger collections also feature pagination (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") 
-<span style="text-decoration: underline">Store Password: staylt</span> ) 
+The collections page features sorting that caches to avoid unnessary api calls and improve performance. Larger collections also feature pagination (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") -  
+<span style="text-decoration: underline">Store Password: staylt</span> )
 
 <div align="center">
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236966816-8f446e0f-20d3-4c80-9eb8-de152df00055.png"/>
@@ -47,7 +53,24 @@ The product page is where the **user experience** is concentrated. When someone 
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236970175-d04392a9-318b-4cd9-a2dc-325bd005092d.png"/>
 </div>
 
-The Delivery Date Modal
+The Choose a Delivery Date Modal
 <div align="center">
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236974556-0a3010f9-a05a-473b-81d1-736f8eb48d32.png"/>
 </div>
+
+### Cart Page
+The cart page has all the things you would expect to find like prices and images of your selected items as well as any associated details. But, in addition to those things it also has pop up modals for changing the delivery date and editing card details from within the cart page. The associated buttons for these modals are highlighted below.
+
+(Details like addons, card and delivery date are only cart properties for the associated item. Future updates to this theme will implement bundling and updating delivery dates on the backend with at least 1 custom app).
+
+<div align="center">
+  <img style="width: 80%;" src="https://github.com/Gulrugar/DrewsFlowerShop/assets/105955316/b0f48151-d2f0-4500-af18-99d683884c5a"/>
+</div>
+
+The Edit Card Message Modal
+<div align="center">
+  <img style="width: 80%;" src="https://github.com/Gulrugar/DrewsFlowerShop/assets/105955316/7ead1bd2-4643-410e-a9e4-f80c80713ded"/>
+</div>
+
+## Other Pages
+Pages like all the customer account pages and are implemented but are only slight variations of Dawn implementation. The search page is also implemented but works similarly to the search bar in the header combined with the collection page.
