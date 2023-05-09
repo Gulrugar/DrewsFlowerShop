@@ -32,10 +32,22 @@ You'll also find a featured blog section that links to articles in a fully imple
 
 ### Collections Page
 
-
 The collections page features filtering that caches to avoid unnessary api calls and improve performance. Larger collections also feature pagination (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") 
 <span style="text-decoration: underline">Store Password: staylt</span> ) 
 
 <div style="text-align: center;">
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236966816-8f446e0f-20d3-4c80-9eb8-de152df00055.png"/>
+</div>
+
+### Product Page
+
+The product page is where the **user experience** is concentrated. When someone is looking to buy flowers it's hard to remember that while flowers by themselves are beautiful the recipient may appreciate some **additional gifts** that are more tangible and so those **options are presented here**. The option to upgrade premium flowers shows the **updated bouquet in the image gallery** to give the user immediate feedback about what they're purchasing and when they're ready enter a 5 digit number (a random number not necessarily a zip code) and **Choose A Delivery Date through a pop up modal**. After that the final and most thoughtful detail is presented: a complementary card to be filled out with a message and signature.
+
+<div style="text-align: center;">
+  <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236970175-d04392a9-318b-4cd9-a2dc-325bd005092d.png"/>
+</div>
+
+The Delivery Date Modal
+<div style="text-align: center;">
+  <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236970175-d04392a9-318b-4cd9-a2dc-325bd005092d.png"/>
 </div>
