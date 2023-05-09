@@ -24,7 +24,7 @@ The home page features a slideshow and featured collections as well as a feature
 
 ![screenshot-homepage](https://user-images.githubusercontent.com/105955316/236931885-6fcda2a1-f183-4d32-9c0f-870abcc41dba.png)
 
-In the header you'll notice a **predictive search bar**. The Javascript for the predictive search is based off of the predictive search implemented in dawn and appearance of the content is my own design inspired by the fromyouflower.com website
+In the header you'll notice a **predictive search bar**. The Javascript for the predictive search is based off of the predictive search implemented in dawn and appearance of the content is my own design inspired by the fromyouflower.com website.
 
 <div align="center">
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236926892-03de600e-1d4b-4c24-afbc-9916993eb26a.png" alt="screenshot-header-10"/>
@@ -38,7 +38,7 @@ You'll also find a featured blog section that links to articles in a fully imple
 
 ### Collection Page
 
-The collections page features sorting that caches to avoid unnessary api calls and improve performance. Larger collections also feature pagination (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") -  
+The collections page features **sorting without reloading the page**. Page data from api calls is also cached to improve performance. Larger collections also feature **pagination** (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") -  
 <span style="text-decoration: underline">Store Password: staylt</span> )
 
 <div align="center">
@@ -59,7 +59,7 @@ The Choose a Delivery Date Modal
 </div>
 
 ### Cart Page
-The cart page has all the things you would expect to find like prices and images of your selected items as well as any associated details. But, in addition to those things it also has pop up modals for changing the delivery date and editing card details from within the cart page. The associated buttons for these modals are highlighted below.
+The cart page has all the things you would expect to find like prices and images of your selected items as well as any associated details. But, in addition to those things it also has **pop up modals for changing the delivery date and editing card details** from within the cart page. The associated buttons for these modals are highlighted below.
 
 (Details like addons, card and delivery date are only cart properties for the associated item. Future updates to this theme will implement bundling and updating delivery dates on the backend with at least 1 custom app).
 
@@ -73,4 +73,4 @@ The Edit Card Message Modal
 </div>
 
 ## Other Pages
-Pages like all the customer account pages and are implemented but are only slight variations of Dawn implementation. The search page is also implemented but works similarly to the search bar in the header combined with the collection page.
+Pages like all the **customer account pages** and are implemented but are only slight variations of Dawn implementation. The **search page** is also implemented but works similarly to the search bar in the header combined with the collection page.
