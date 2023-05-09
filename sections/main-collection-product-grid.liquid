@@ -8,7 +8,7 @@
   <hr>
   {%- paginate collection.products by section.settings.products_per_page -%}
 
-    {%- assign pageProductCap = paginate.current_page | times: 8 -%}
+    {%- assign pageProductCap = paginate.current_page | times: section.settings.products_per_page -%}
 
     {%- capture paginate_info -%}
       Showing {{ paginate.current_offset | plus: 1 }}
