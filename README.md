@@ -1,5 +1,9 @@
 # Drew's Flower Shop
 
+[Link to Store =>](http://www.traversymedia.com "Drew's Flower Shop")
+
+<span style="text-decoration: underline">Store Password: staylt</span>
+
 
 Drew's Flower Shop is fully featured Shopify store that has all custom templates (except password and gift_card). My intention in creating this store was to fully demonstrate my ability to create a Shopify theme and showcase my understanding of web development.
 
@@ -27,3 +31,11 @@ You'll also find a featured blog section that links to articles in a fully imple
 </div>
 
 ### Collections Page
+
+
+The collections page features filtering that caches to avoid unnessary api calls and improve performance. Larger collections also feature pagination (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") 
+<span style="text-decoration: underline">Store Password: staylt</span> ) 
+
+<div style="text-align: center;">
+  <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236966816-8f446e0f-20d3-4c80-9eb8-de152df00055.png"/>
+</div>
