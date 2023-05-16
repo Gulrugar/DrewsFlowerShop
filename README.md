@@ -38,7 +38,7 @@ You'll also find a featured blog section that links to articles in a fully imple
 
 ### Collection Page
 
-The collections page features **sorting without reloading the page**. Page data from api calls is also cached to improve performance. Larger collections also feature **pagination** (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") -  
+The collections page features **sorting without reloading the page**. Page data from the Shopify Section Rendering API is cached to improve performance when the page is sorted. Larger collections also feature **pagination** (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") -  
 <span style="text-decoration: underline">Store Password: staylt</span> )
 
 <div align="center">
