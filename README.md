@@ -6,7 +6,7 @@
 [Cart Page](#cart-page) |
 [Other Pages](#other-pages)
 
-[Go to Store =>](http://www.traversymedia.com "Drew's Flower Shop")
+[Go to Store =>](https://drews-flowershop.myshopify.com/ "Drew's Flower Shop")
 
 <span style="text-decoration: underline">Store Password: staylt</span>
 
