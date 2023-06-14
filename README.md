@@ -8,13 +8,11 @@
 
 [Go to Store =>](https://drews-flowershop.myshopify.com/ "Drew's Flower Shop")
 
-<span style="text-decoration: underline">Store Password: staylt</span>
-
+<span style="text-decoration: underline">Store Password: devdrew</span>
 
 Drew's Flower Shop is fully featured Shopify store that has all custom templates (except password and gift_card). My intention in creating this store was to fully demonstrate my ability to create a Shopify theme and showcase my understanding of web development.
 
 This website is based off the website: [fromyouflowers.com](https://www.fromyouflowers.com/ "From You Flowers") and [Shopify's Theme Dawn](https://github.com/Shopify/dawn "Dawn")
-
 
 ## Store Preview
 
@@ -39,7 +37,7 @@ You'll also find a featured blog section that links to articles in a fully imple
 ### Collection Page
 
 The collections page features **sorting without reloading the page**. Page data from the Shopify Section Rendering API is cached to improve performance when the page is sorted. Larger collections also feature **pagination** (check out the implementation here in the [All Sentiment collection](https://drews-flowershop.myshopify.com/collections/birthday "All Sentiment") -  
-<span style="text-decoration: underline">Store Password: staylt</span> )
+<span style="text-decoration: underline">Store Password: devdrew</span> )
 
 <div align="center">
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236966816-8f446e0f-20d3-4c80-9eb8-de152df00055.png"/>
@@ -54,11 +52,13 @@ The product page is where the **user experience** is concentrated. When someone 
 </div>
 
 The Choose a Delivery Date Modal
+
 <div align="center">
   <img style="width: 80%;" src="https://user-images.githubusercontent.com/105955316/236974556-0a3010f9-a05a-473b-81d1-736f8eb48d32.png"/>
 </div>
 
 ### Cart Page
+
 The cart page has all the things you would expect to find like prices and images of your selected items as well as any associated details. But, in addition to those things it also has **pop up modals for changing the delivery date and editing card details** from within the cart page. The associated buttons for these modals are highlighted below.
 
 (Details like addons, card and delivery date are only cart properties for the associated item. Future updates to this theme will implement bundling and updating delivery dates on the backend with at least 1 custom app).
@@ -68,9 +68,11 @@ The cart page has all the things you would expect to find like prices and images
 </div>
 
 The Edit Card Message Modal
+
 <div align="center">
   <img style="width: 80%;" src="https://github.com/Gulrugar/DrewsFlowerShop/assets/105955316/7ead1bd2-4643-410e-a9e4-f80c80713ded"/>
 </div>
 
 ## Other Pages
+
 Pages like all the **customer account pages** and are implemented but are only slight variations of Dawn implementation. The **search page** is also implemented but works similarly to the search bar in the header combined with the collection page.
