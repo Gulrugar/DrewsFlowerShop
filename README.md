@@ -6,9 +6,13 @@
 [Cart Page](#cart-page) |
 [Other Pages](#other-pages)
 
-[Go to Store =>](https://drews-flowershop.myshopify.com/ "Drew's Flower Shop")
+[Visit Drew's Flower Shop=>](https://drews-flowershop.myshopify.com/ "Drew's Flower Shop")
 
-<span style="text-decoration: underline">Store Password: devdrew</span>
+<span style="text-decoration: underline">Store Password:</span>
+
+```
+devdrew
+```
 
 Drew's Flower Shop is fully featured Shopify store that has all custom templates (except password and gift_card). My intention in creating this store was to fully demonstrate my ability to create a Shopify theme and showcase my understanding of web development.
 
